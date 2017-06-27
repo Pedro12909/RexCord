@@ -1,0 +1,14 @@
+#########################################################
+#                                                       #
+#              RexCord Configuration File               #
+#                                                       #
+#########################################################
+
+# Lines starting with an '#' are comments and will not be read.
+
+## Authentication ##
+# For more information on how to get your bot token, take a look at this link
+# https://discordapp.com/developers/docs/topics/oauth2
+
+# Bot Token (insert your bot's token after the '=' sign)
+token =
