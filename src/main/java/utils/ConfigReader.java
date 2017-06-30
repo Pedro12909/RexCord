@@ -54,6 +54,4 @@ public class ConfigReader {
 
         sc.close();
     }
-
-
 }

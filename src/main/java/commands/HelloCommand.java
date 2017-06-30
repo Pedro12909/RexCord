@@ -13,7 +13,7 @@ public class HelloCommand {
      * Greets the user that triggered this event
      * @param event received event
      */
-    public HelloCommand(final MessageReceivedEvent event) {
+    public HelloCommand(MessageReceivedEvent event) {
         String messageToSend = "Hello, " + event.getAuthor().mention();
 
         BotUtils.sendMessage(event.getChannel(), messageToSend);

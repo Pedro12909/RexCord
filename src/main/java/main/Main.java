@@ -24,6 +24,10 @@ public class Main {
      * @param args passed arguments
      */
     public static void main(String[] args) {
+
+        // Sets start time for uptime command
+        BotUtils.setStartTime(System.currentTimeMillis());
+
         try {
             // Reads config file
             new ConfigReader(BotUtils.DEFAULT_CONFIG_PATH);

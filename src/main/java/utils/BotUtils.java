@@ -8,14 +8,17 @@ import sx.blah.discord.util.DiscordException;
 /**
  * Contains important methods and variables for the Bot
  */
-public class BotUtils {
+public final class BotUtils {
 
     /**
-     * Private Constructor
+     * System's start time
      */
-    private BotUtils() {
+    private static long startTime;
 
-    }
+    /**
+     * Bot's user token
+     */
+    private static String botToken;
 
     /**
      * Only messages starting with this prefix will be tracked
@@ -44,7 +47,8 @@ public class BotUtils {
      */
     public static final String CONFIG_NOT_FOUND_ERROR =
             "RexCord: Config file not found. "
-            + "Make sure it is created and located in the correct directory.";
+                    + "Make sure it is created and located in "
+                    + "the correct directory.";
 
     /**
      * Default Error Message
@@ -59,9 +63,35 @@ public class BotUtils {
             "RexCord: Terminating RexCord...";
 
     /**
-     * Bot's user token
+     * Private Constructor
      */
-    private static String botToken;
+    private BotUtils() {
+
+    }
+
+    /**
+     * Sets a new Bot Token
+     * @param newToken new Bot Token to be set
+     */
+    public static void setBotToken(String newToken) {
+        BotUtils.botToken = newToken;
+    }
+
+    /**
+     * Gets system start time, in mm
+     * @return system start time, in mm
+     */
+    public static long getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * S system start time, in mm
+     * @param startTime system start time, in mm
+     */
+    public static void setStartTime(long startTime) {
+        BotUtils.startTime = startTime;
+    }
 
     /**
      * Handles the creation of a Bot Client
@@ -85,21 +115,5 @@ public class BotUtils {
             System.out.println("RexCord: Error sending message. Got error:");
             de.printStackTrace();
         }
-    }
-
-    /**
-     * Gets Bot Token
-     * @return Bot Token
-     */
-    public static String getBotToken() {
-        return botToken;
-    }
-
-    /**
-     * Sets a new Bot Token
-     * @param newToken new Bot Token to be set
-     */
-    public static void setBotToken(String newToken) {
-        BotUtils.botToken = newToken;
     }
 }
