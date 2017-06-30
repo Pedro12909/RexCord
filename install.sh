@@ -1,2 +1,2 @@
-mvn install
-mvn clean package
+mvn install clean package
+read
