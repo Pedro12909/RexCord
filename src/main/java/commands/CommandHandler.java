@@ -39,7 +39,9 @@ public class CommandHandler {
             case "greet":
                 new HelloCommand(event);
                 break;
-
+            case "about":
+                new AboutCommand(event);
+                break;
             default:
                 return;
         }
