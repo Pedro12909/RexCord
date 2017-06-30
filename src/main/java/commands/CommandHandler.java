@@ -43,6 +43,9 @@ public class CommandHandler {
                 UptimeCommand command = new UptimeCommand(event);
                 command.executeCommand();
                 break;
+            case "about":
+                new AboutCommand(event);
+                break;
             default:
                 return;
         }
