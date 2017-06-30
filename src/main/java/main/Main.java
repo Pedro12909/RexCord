@@ -1,17 +1,28 @@
 package main;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import commands.CommandHandler;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
 import utils.BotUtils;
 import utils.ConfigReader;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Main Class
+ */
 public class Main {
 
+    /**
+     * Private constructor
+     */
+    private Main() {
+
+    }
+
+    /**
+     * Main method
+     * @param args passed arguments
+     */
     public static void main(String[] args) {
         try {
             // Reads config file
@@ -30,8 +41,8 @@ public class Main {
 
         } catch (DiscordException e2) { // Invalid token
             System.out.println(BotUtils.ERROR_MESSAGE);
-            System.out.println("Unexpected error while loading RexCord." +
-                    "\nDid you insert a valid token?");
+            System.out.println("Unexpected error while loading RexCord."
+                    + "\nDid you insert a valid token?");
             System.out.println(BotUtils.TERMINATING_MESSAGE);
         }
 

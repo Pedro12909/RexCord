@@ -1,4 +1,5 @@
 target/
 .idea/
+modules/
 *.iml
 config/config.cfg

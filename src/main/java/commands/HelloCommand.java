@@ -1,6 +1,7 @@
 package commands;
 
-import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild
+        .channel.message.MessageReceivedEvent;
 import utils.BotUtils;
 
 /**
@@ -8,7 +9,11 @@ import utils.BotUtils;
  */
 public class HelloCommand {
 
-    public HelloCommand(MessageReceivedEvent event) {
+    /**
+     * Greets the user that triggered this event
+     * @param event received event
+     */
+    public HelloCommand(final MessageReceivedEvent event) {
         String messageToSend = "Hello, " + event.getAuthor().mention();
 
         BotUtils.sendMessage(event.getChannel(), messageToSend);

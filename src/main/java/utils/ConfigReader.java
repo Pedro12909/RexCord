@@ -12,6 +12,7 @@ public class ConfigReader {
     /**
      * Creates an instance of ConfigReader
      * @param configPath The default config file path
+     * @throws FileNotFoundException in case doesnt find config file
      */
     public ConfigReader(String configPath) throws FileNotFoundException {
         readFile(configPath);
@@ -37,12 +38,13 @@ public class ConfigReader {
                 try {
                     option = lineSplitted[1].trim();
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new ArrayIndexOutOfBoundsException(BotUtils.MISSING_TOKEN);
+                    throw new ArrayIndexOutOfBoundsException(
+                            BotUtils.MISSING_TOKEN);
                 }
 
                 switch (parameter) { //config parameters should be handled here
                     case "token":
-                        BotUtils.botToken = option;
+                        BotUtils.setBotToken(option);
                         break;
                     default:
                         break;

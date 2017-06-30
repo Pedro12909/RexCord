@@ -1,17 +1,25 @@
 package commands;
 
 import sx.blah.discord.api.events.EventSubscriber;
-import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel
+        .message.MessageReceivedEvent;
 import utils.BotUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Handles Commands Execution
+ */
 public class CommandHandler {
 
+    /**
+     * Is called everytime it receives a message
+     * @param event event that was received
+     */
     @EventSubscriber
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public final void onMessageReceived(MessageReceivedEvent event) {
         String[] received = event.getMessage().getContent().split(" ");
 
         if (received.length == 0) {
