@@ -15,6 +15,16 @@ import java.util.List;
 public class CommandHandler {
 
     /**
+     * A list of all available commands
+     */
+    private static List<BotCommand> availableCommands =
+            new ArrayList<>(Arrays.asList(
+                    new HelloCommand(),
+                    new UptimeCommand(),
+                    new AboutCommand()
+            ));
+
+    /**
      * Is called everytime it receives a message
      * @param event event that was received
      */
@@ -35,19 +45,12 @@ public class CommandHandler {
         List<String> args = new ArrayList<>(Arrays.asList(received));
         args.remove(0);
 
-        switch (commandString) {
-            case "greet":
-                new HelloCommand(event);
-                break;
-            case "uptime":
-                UptimeCommand command = new UptimeCommand(event);
-                command.executeCommand();
-                break;
-            case "about":
-                new AboutCommand(event);
-                break;
-            default:
-                return;
+        // Iterates through all available commands
+        for (BotCommand cmd : availableCommands) {
+            // If given command name is a valid command name, executes it
+            if (commandString.equals(cmd.getCommandName())) {
+                cmd.runCommand(event);
+            }
         }
     }
 }

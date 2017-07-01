@@ -7,13 +7,27 @@ import utils.BotUtils;
 /**
  * Greets user
  */
-public class HelloCommand {
+public class HelloCommand implements BotCommand {
 
     /**
-     * Greets the user that triggered this event
-     * @param event received event
+     * Used to call this command via a message
      */
-    public HelloCommand(MessageReceivedEvent event) {
+    private static final String COMMAND_NAME = "greet";
+
+    /**
+     * Gets command name
+     * @return command name
+     */
+    @Override
+    public final String getCommandName() {
+        return COMMAND_NAME;
+    }
+
+    /**
+     * Runs command
+     */
+    @Override
+    public final void runCommand(MessageReceivedEvent event)  {
         String messageToSend = "Hello, " + event.getAuthor().mention();
 
         BotUtils.sendMessage(event.getChannel(), messageToSend);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package commands;
 
 import sx.blah.discord.handle.impl.events.guild.channel.message.
@@ -13,7 +8,13 @@ import utils.DiscordMarkdown;
 /**
  * Informs user about the RexCord information and documentation
  */
-public class AboutCommand {
+public class AboutCommand implements BotCommand {
+
+    /**
+     * Used to call this command via a message
+     */
+    private static final String COMMAND_NAME = "about";
+
     /**
      * String with Discord4J GitHub Repository link
      */
@@ -29,12 +30,23 @@ public class AboutCommand {
      */
     private static final String JUST_SOME_MUSIC_BOT_REPOSITORY =
             "https://github.com/Just-Some-Bots/MusicBot";
+
+    /**
+     * Gets command name
+     * @return command name
+     */
+    @Override
+    public final String getCommandName() {
+        return COMMAND_NAME;
+    }
+
     /**
      * Informs the user who triggered this event with
      * about the RexCord information and documentation
      * @param event received event
      */
-    public AboutCommand(MessageReceivedEvent event) {
+    @Override
+    public final void runCommand(MessageReceivedEvent event) {
         BotUtils.sendMessage(event.getChannel(), "RexCord is a Discord Bot "
                 + "written in java, that uses the popular interface "
                 + DiscordMarkdown.boldItalic("Discord4J") + " developed by "

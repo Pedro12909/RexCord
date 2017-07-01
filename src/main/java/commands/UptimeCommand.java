@@ -7,12 +7,12 @@ import utils.BotUtils;
 /**
  * Calculates how much time RexCord has been up
  */
-public class UptimeCommand {
+public class UptimeCommand implements BotCommand {
 
     /**
-     * Amount of milliseconds in a day
+     * Used to call the command via a message
      */
-    private static final int MM_PER_DAY = (int) Math.pow(8.64, 7);
+    private static final String COMMAND_NAME = "uptime";
 
     /**
      * Amount of hours per day
@@ -35,22 +35,20 @@ public class UptimeCommand {
     private static final int MM_PER_SECOND = 1000;
 
     /**
-     * Passed event
+     * Gets command name
+     * @return command name
      */
-    private MessageReceivedEvent event;
-
-    /**
-     * Constructor
-     * @param event received event
-     */
-    public UptimeCommand(MessageReceivedEvent event) {
-        this.event = event;
+    @Override
+    public final String getCommandName() {
+        return COMMAND_NAME;
     }
 
     /**
-     * Executes command
+     * Runs Uptime Command
+     * @param event passed event
      */
-    public final void executeCommand() {
+    @Override
+    public final void runCommand(MessageReceivedEvent event) {
         long runtime = getUptimeInMilliseconds();
 
         BotUtils.sendMessage(event.getChannel(),
