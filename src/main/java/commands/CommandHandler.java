@@ -39,6 +39,10 @@ public class CommandHandler {
             case "greet":
                 new HelloCommand(event);
                 break;
+            case "uptime":
+                UptimeCommand command = new UptimeCommand(event);
+                command.executeCommand();
+                break;
             case "about":
                 new AboutCommand(event);
                 break;
