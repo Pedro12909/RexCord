@@ -3,8 +3,8 @@ package utils;
 import java.util.List;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
-import sx.blah.discord.handle.impl.events.guild.channel.message
-        .MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel.message.
+        MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IRole;
 import sx.blah.discord.util.DiscordException;
@@ -23,7 +23,10 @@ public final class BotUtils {
      * Bot's user token
      */
     private static String botToken;
-
+    /**
+     * Bot's banned commands
+     */
+    private static String botBannedCommands;
     /**
      * Only messages starting with this prefix will be tracked
      */
@@ -80,6 +83,24 @@ public final class BotUtils {
      */
     public static void setBotToken(String newToken) {
         BotUtils.botToken = newToken;
+    }
+
+    /**
+     * Sets the bot banned commands
+     *
+     * @param bannedCommands String with the banned bot commands
+     */
+    public static void setBotBannedCommands(String bannedCommands) {
+        BotUtils.botBannedCommands = bannedCommands;
+    }
+
+    /**
+     * Gets the bot banned commands
+     *
+     * @return String with bot banned commands
+     */
+    public static String getBotBannedCommands() {
+        return botBannedCommands;
     }
 
     /**

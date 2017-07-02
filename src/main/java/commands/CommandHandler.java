@@ -1,8 +1,8 @@
 package commands;
 
 import sx.blah.discord.api.events.EventSubscriber;
-import sx.blah.discord.handle.impl.events.guild.channel
-        .message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel.message
+        .MessageReceivedEvent;
 import utils.BotUtils;
 
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ public class CommandHandler {
     /**
      * A list of all available commands
      */
-    private static List<BotCommand> availableCommands =
-            new ArrayList<>(Arrays.asList(
+    private static List<BotCommand> availableCommands
+            = new ArrayList<>(Arrays.asList(
                     new HelloCommand(),
                     new UptimeCommand(),
                     new AboutCommand()
@@ -26,6 +26,7 @@ public class CommandHandler {
 
     /**
      * Is called everytime it receives a message
+     *
      * @param event event that was received
      */
     @EventSubscriber
@@ -48,7 +49,8 @@ public class CommandHandler {
         // Iterates through all available commands
         for (BotCommand cmd : availableCommands) {
             // If given command name is a valid command name, executes it
-            if (commandString.equals(cmd.getCommandName())) {
+            if (commandString.equals(cmd.getCommandName())
+                    && !BannedCommands.isCommandBanned(commandString)) {
                 cmd.runCommand(event);
             }
         }

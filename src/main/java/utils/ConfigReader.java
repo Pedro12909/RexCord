@@ -11,6 +11,7 @@ public class ConfigReader {
 
     /**
      * Creates an instance of ConfigReader
+     *
      * @param configPath The default config file path
      * @throws FileNotFoundException in case doesnt find config file
      */
@@ -20,6 +21,7 @@ public class ConfigReader {
 
     /**
      * Reads config file and assigns each parameter value
+     *
      * @param configPath Configuration file's path
      * @throws FileNotFoundException if config file is not found
      */
@@ -45,6 +47,9 @@ public class ConfigReader {
                 switch (parameter) { //config parameters should be handled here
                     case "token":
                         BotUtils.setBotToken(option);
+                        break;
+                    case "banned_commands":
+                        BotUtils.setBotBannedCommands(option);
                         break;
                     default:
                         break;
