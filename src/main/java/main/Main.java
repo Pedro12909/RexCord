@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 public class Main {
 
     /**
-     * Private constructor
+     * Indicates that this class should not be instantiated
      */
     private Main() {
 
@@ -38,7 +38,7 @@ public class Main {
             System.out.println(BotUtils.CONFIG_NOT_FOUND_ERROR);
             System.out.println(BotUtils.TERMINATING_MESSAGE);
 
-        } catch (ArrayIndexOutOfBoundsException e1) { // Missing Token
+        } catch (ArrayIndexOutOfBoundsException e1) { // Bad config
             System.out.println(BotUtils.ERROR_MESSAGE);
             System.out.println(e1.getMessage());
             System.out.println(BotUtils.TERMINATING_MESSAGE);
