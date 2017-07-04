@@ -10,6 +10,12 @@ import java.util.Scanner;
 public class ConfigReader {
 
     /**
+     * Print this message when a field definition is empty
+     */
+    private static final String MISSING_DEFINITION =
+            "Error while loading config.cfg\n[Line %d] Missing %s definition";
+
+    /**
      * Creates an instance of ConfigReader
      *
      * @param configPath The default config file path
@@ -28,8 +34,11 @@ public class ConfigReader {
     private void readFile(String configPath) throws FileNotFoundException {
         Scanner sc = new Scanner(new File(configPath));
 
+        int lineNumber = 0;
+
         while (sc.hasNext()) {
             String currentLine = sc.nextLine();
+            lineNumber++;
 
             if (!currentLine.trim().equals("")
                     && !currentLine.startsWith(BotUtils.CONFIG_COMMENT)) {
@@ -41,7 +50,8 @@ public class ConfigReader {
                     option = lineSplitted[1].trim();
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new ArrayIndexOutOfBoundsException(
-                            BotUtils.MISSING_TOKEN);
+                            String.format(MISSING_DEFINITION,
+                                    lineNumber, parameter));
                 }
 
                 switch (parameter) { //config parameters should be handled here
@@ -50,6 +60,8 @@ public class ConfigReader {
                         break;
                     case "banned_commands":
                         BotUtils.setBotBannedCommands(option);
+                    case "prefix":
+                        BotUtils.setBotPrefix(option);
                         break;
                     default:
                         break;

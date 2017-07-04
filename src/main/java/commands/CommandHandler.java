@@ -37,11 +37,14 @@ public class CommandHandler {
             return;
         }
 
-        if (!received[0].startsWith(BotUtils.BOT_PREFIX)) {
+        if (!received[0].startsWith(BotUtils.getBotPrefix())) {
             return;
         }
 
-        String commandString = received[0].substring(2);
+        int numberOfCharsInPrefix = BotUtils.getBotPrefix().length();
+
+        // Creates a substring of the received message without the bot's prefix
+        String commandString = received[0].substring(numberOfCharsInPrefix);
 
         List<String> args = new ArrayList<>(Arrays.asList(received));
         args.remove(0);

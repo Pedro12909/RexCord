@@ -28,9 +28,9 @@ public final class BotUtils {
      */
     private static String botBannedCommands;
     /**
-     * Only messages starting with this prefix will be tracked
+     * Only messages starting with this prefix will be handled
      */
-    public static final String BOT_PREFIX = "//";
+    private static String botPrefix = "//";
 
     /**
      * Line comment in config file
@@ -70,7 +70,7 @@ public final class BotUtils {
             = "RexCord: Terminating RexCord...";
 
     /**
-     * Private Constructor
+     * Prevents class from being instantiated
      */
     private BotUtils() {
 
@@ -101,6 +101,22 @@ public final class BotUtils {
      */
     public static String getBotBannedCommands() {
         return botBannedCommands;
+    }
+
+    /**
+     * Gets bot prefix
+     * @return Bot prefix
+     */
+    public static String getBotPrefix() {
+        return botPrefix;
+    }
+
+    /**
+     * Sets bot prefix
+     * @param botPrefix new bot prefix
+     */
+    public static void setBotPrefix(String botPrefix) {
+        BotUtils.botPrefix = botPrefix;
     }
 
     /**
