@@ -27,7 +27,7 @@ public class HelloCommand implements BotCommand {
      * Runs command
      */
     @Override
-    public final void runCommand(MessageReceivedEvent event)  {
+    public final void runCommand(MessageReceivedEvent event, String args)  {
         String messageToSend = "Hello, " + event.getAuthor().mention();
 
         BotUtils.sendMessage(event.getChannel(), messageToSend);

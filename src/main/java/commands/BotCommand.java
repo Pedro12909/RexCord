@@ -17,6 +17,7 @@ public interface BotCommand {
     /**
      * Command execution is handled here
      * @param event passed event
+     * @param args passed arguments
      */
-    void runCommand(MessageReceivedEvent event);
+    void runCommand(MessageReceivedEvent event, String args);
 }

@@ -15,6 +15,11 @@ import sx.blah.discord.util.DiscordException;
 public final class BotUtils {
 
     /**
+     * Bot Client
+     */
+    private static IDiscordClient client;
+
+    /**
      * System's start time
      */
     private static long startTime;
@@ -44,12 +49,6 @@ public final class BotUtils {
             = System.getProperty("user.dir") + "/config/config.cfg";
 
     /**
-     * Missing Token Error Message
-     */
-    public static final String MISSING_TOKEN = "RexCord: Please insert your "
-            + "server's bot token in the configuration file.";
-
-    /**
      * Config missing Error Message
      */
     public static final String CONFIG_NOT_FOUND_ERROR
@@ -74,6 +73,27 @@ public final class BotUtils {
      */
     private BotUtils() {
 
+    }
+
+    /**
+     * Handles the creation of a Bot Client
+     *
+     * @return A new Bot Client
+     */
+    public static IDiscordClient createDiscordClient() {
+         client = new ClientBuilder()
+                .withToken(botToken)
+                .build();
+
+         return client;
+    }
+
+    /**
+     * Gets Bot Client
+     * @return IDiscordClient
+     */
+    public static IDiscordClient getClient() {
+        return client;
     }
 
     /**
@@ -135,17 +155,6 @@ public final class BotUtils {
      */
     public static void setStartTime(long startTime) {
         BotUtils.startTime = startTime;
-    }
-
-    /**
-     * Handles the creation of a Bot Client
-     *
-     * @return A new Bot Client
-     */
-    public static IDiscordClient createDiscordClient() {
-        return new ClientBuilder()
-                .withToken(botToken)
-                .build();
     }
 
     /**

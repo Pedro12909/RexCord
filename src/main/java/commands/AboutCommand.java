@@ -46,7 +46,7 @@ public class AboutCommand implements BotCommand {
      * @param event received event
      */
     @Override
-    public final void runCommand(MessageReceivedEvent event) {
+    public final void runCommand(MessageReceivedEvent event, String args) {
         BotUtils.sendMessage(event.getChannel(), "RexCord is a Discord Bot "
                 + "written in java, that uses the popular interface "
                 + DiscordMarkdown.boldItalic("Discord4J") + " developed by "

@@ -21,7 +21,8 @@ public class CommandHandler {
             = new ArrayList<>(Arrays.asList(
                     new HelloCommand(),
                     new UptimeCommand(),
-                    new AboutCommand()
+                    new AboutCommand(),
+                    new ShutdownCommand()
             ));
 
     /**
@@ -54,7 +55,7 @@ public class CommandHandler {
             // If given command name is a valid command name, executes it
             if (commandString.equals(cmd.getCommandName())
                     && !BannedCommands.isCommandBanned(commandString)) {
-                cmd.runCommand(event);
+                cmd.runCommand(event, String.join(" ", args));
             }
         }
     }

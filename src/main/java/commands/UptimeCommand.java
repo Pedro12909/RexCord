@@ -48,7 +48,7 @@ public class UptimeCommand implements BotCommand {
      * @param event passed event
      */
     @Override
-    public final void runCommand(MessageReceivedEvent event) {
+    public final void runCommand(MessageReceivedEvent event, String args) {
         long runtime = getUptimeInMilliseconds();
 
         BotUtils.sendMessage(event.getChannel(),
