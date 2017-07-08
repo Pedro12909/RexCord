@@ -1,5 +1,7 @@
 ## **Welcome to RexCord** ##
 
+[![Build Status](https://travis-ci.org/Pedro12909/RexCord.svg?branch=master)](https://travis-ci.org/Pedro12909/RexCord)
+
 ### What is RexCord? ###
 - RexCord is a Discord Bot written in Java using [Discord4J](https://github.com/austinv11/Discord4J) interface as a way to communicate with Discord servers, to get user actions and live updates. The bot offers a variety of commands and functionalities that eases the user experience on Discord servers.
 
