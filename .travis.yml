@@ -1,3 +1,6 @@
 language: java
+jdk:
+  - oraclejdk8
 sudo: false
-script: mvn verify
+install: mvn install
+script: mvn clean verify
