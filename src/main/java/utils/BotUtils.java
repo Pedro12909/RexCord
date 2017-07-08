@@ -15,6 +15,11 @@ import sx.blah.discord.util.DiscordException;
 public final class BotUtils {
 
     /**
+     * Bot Client
+     */
+    private static IDiscordClient client;
+
+    /**
      * System's start time
      */
     private static long startTime;
@@ -28,9 +33,9 @@ public final class BotUtils {
      */
     private static String botBannedCommands;
     /**
-     * Only messages starting with this prefix will be tracked
+     * Only messages starting with this prefix will be handled
      */
-    public static final String BOT_PREFIX = "//";
+    private static String botPrefix = "//";
 
     /**
      * Line comment in config file
@@ -42,12 +47,6 @@ public final class BotUtils {
      */
     public static final String DEFAULT_CONFIG_PATH
             = System.getProperty("user.dir") + "/config/config.cfg";
-
-    /**
-     * Missing Token Error Message
-     */
-    public static final String MISSING_TOKEN = "RexCord: Please insert your "
-            + "server's bot token in the configuration file.";
 
     /**
      * Config missing Error Message
@@ -70,10 +69,31 @@ public final class BotUtils {
             = "RexCord: Terminating RexCord...";
 
     /**
-     * Private Constructor
+     * Prevents class from being instantiated
      */
     private BotUtils() {
 
+    }
+
+    /**
+     * Handles the creation of a Bot Client
+     *
+     * @return A new Bot Client
+     */
+    public static IDiscordClient createDiscordClient() {
+         client = new ClientBuilder()
+                .withToken(botToken)
+                .build();
+
+         return client;
+    }
+
+    /**
+     * Gets Bot Client
+     * @return IDiscordClient
+     */
+    public static IDiscordClient getClient() {
+        return client;
     }
 
     /**
@@ -104,6 +124,22 @@ public final class BotUtils {
     }
 
     /**
+     * Gets bot prefix
+     * @return Bot prefix
+     */
+    public static String getBotPrefix() {
+        return botPrefix;
+    }
+
+    /**
+     * Sets bot prefix
+     * @param botPrefix new bot prefix
+     */
+    public static void setBotPrefix(String botPrefix) {
+        BotUtils.botPrefix = botPrefix;
+    }
+
+    /**
      * Gets system start time, in mm
      *
      * @return system start time, in mm
@@ -119,17 +155,6 @@ public final class BotUtils {
      */
     public static void setStartTime(long startTime) {
         BotUtils.startTime = startTime;
-    }
-
-    /**
-     * Handles the creation of a Bot Client
-     *
-     * @return A new Bot Client
-     */
-    public static IDiscordClient createDiscordClient() {
-        return new ClientBuilder()
-                .withToken(botToken)
-                .build();
     }
 
     /**

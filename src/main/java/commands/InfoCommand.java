@@ -42,7 +42,7 @@ public class InfoCommand implements BotCommand {
      * @param event the event triggered by the user
      */
     @Override
-    public final void runCommand(MessageReceivedEvent event) {
+    public final void runCommand(MessageReceivedEvent event, String args) {
         String commandInformation = "All commands information";
         List<BotCommand> commands = CommandHandler.getAvailableCommands();
         for (int i = 0; i < commands.size(); i++) {

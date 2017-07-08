@@ -22,7 +22,8 @@ public class CommandHandler {
                     new HelloCommand(),
                     new UptimeCommand(),
                     new AboutCommand(),
-                    new InfoCommand()
+                    new InfoCommand(),
+                    new ShutdownCommand()
             ));
     /**
      * Returns all available commands
@@ -44,11 +45,14 @@ public class CommandHandler {
             return;
         }
 
-        if (!received[0].startsWith(BotUtils.BOT_PREFIX)) {
+        if (!received[0].startsWith(BotUtils.getBotPrefix())) {
             return;
         }
 
-        String commandString = received[0].substring(2);
+        int numberOfCharsInPrefix = BotUtils.getBotPrefix().length();
+
+        // Creates a substring of the received message without the bot's prefix
+        String commandString = received[0].substring(numberOfCharsInPrefix);
 
         List<String> args = new ArrayList<>(Arrays.asList(received));
         args.remove(0);
@@ -58,7 +62,7 @@ public class CommandHandler {
             // If given command name is a valid command name, executes it
             if (commandString.equals(cmd.getCommandName())
                     && !BannedCommands.isCommandBanned(commandString)) {
-                cmd.runCommand(event);
+                cmd.runCommand(event, String.join(" ", args));
             }
         }
     }
