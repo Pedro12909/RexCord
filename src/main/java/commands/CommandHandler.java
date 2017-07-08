@@ -21,9 +21,16 @@ public class CommandHandler {
             = new ArrayList<>(Arrays.asList(
                     new HelloCommand(),
                     new UptimeCommand(),
-                    new AboutCommand()
+                    new AboutCommand(),
+                    new InfoCommand()
             ));
-
+    /**
+     * Returns all available commands
+     * @return A List with all the available commands
+     */
+    public static List<BotCommand> getAvailableCommands() {
+        return availableCommands;
+    }
     /**
      * Is called everytime it receives a message
      *

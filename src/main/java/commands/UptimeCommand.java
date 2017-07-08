@@ -13,12 +13,15 @@ public class UptimeCommand implements BotCommand {
      * Used to call the command via a message
      */
     private static final String COMMAND_NAME = "uptime";
-
+    /**
+     * Represents the command description
+     */
+    private static final String COMMAND_DESCRIPTION =
+            "Shows how much time the bot has been on";
     /**
      * Amount of hours per day
      */
     private static final int HOURS_PER_DAY = 24;
-
     /**
      * Amount of minutes per hour
      */
@@ -78,5 +81,10 @@ public class UptimeCommand implements BotCommand {
         return String.format("RexCord has been sleep deprived for "
                 + "%d hours, %d minutes and %d seconds! :sleeping: ",
                 (int) hour, (int) minute, second);
+    }
+
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
     }
 }
