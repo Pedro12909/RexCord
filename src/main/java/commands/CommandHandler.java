@@ -23,7 +23,8 @@ public class CommandHandler {
                     new UptimeCommand(),
                     new AboutCommand(),
                     new InfoCommand(),
-                    new ShutdownCommand()
+                    new ShutdownCommand(),
+                    new RequestCommand()
             ));
     /**
      * Returns all available commands
