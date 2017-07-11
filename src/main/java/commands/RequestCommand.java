@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package commands;
 
 import sx.blah.discord.handle.impl.events.guild.channel.message
@@ -23,7 +18,7 @@ public class RequestCommand implements BotCommand {
     /**
      * Represents the command description
      */
-    private static final String COMMAND_DESCRIPTION = 
+    private static final String COMMAND_DESCRIPTION =
             "Requests a certain command"
             + "to Admin";
 

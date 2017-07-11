@@ -26,7 +26,7 @@ public class CommandHandler {
         availableCommands.add(new ShutdownCommand());
         availableCommands.add(new UptimeCommand());
     }
-    
+
     /**
      * Returns all available commands
      * @return A List with all the available commands
