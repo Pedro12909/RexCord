@@ -7,7 +7,9 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.
         MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IRole;
+import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.util.DiscordException;
+import sx.blah.discord.util.MessageBuilder;
 
 /**
  * Contains important methods and variables for the Bot
@@ -61,15 +63,16 @@ public final class BotUtils {
      * @return A new Bot Client
      */
     public static IDiscordClient createDiscordClient() {
-         client = new ClientBuilder()
+        client = new ClientBuilder()
                 .withToken(botToken)
                 .build();
 
-         return client;
+        return client;
     }
 
     /**
      * Gets Bot Client
+     *
      * @return IDiscordClient
      */
     public static IDiscordClient getClient() {
@@ -105,6 +108,7 @@ public final class BotUtils {
 
     /**
      * Gets bot prefix
+     *
      * @return Bot prefix
      */
     public static String getBotPrefix() {
@@ -113,6 +117,7 @@ public final class BotUtils {
 
     /**
      * Sets bot prefix
+     *
      * @param botPrefix new bot prefix
      */
     public static void setBotPrefix(String botPrefix) {
@@ -179,5 +184,24 @@ public final class BotUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * Sends a message to a certain user
+     *
+     * @param user user to send the message
+     * @param message message being sent
+     */
+    public static void sendMessageToUser(IUser user, String message) {
+        try {
+            //Constructor requires the bot IDiscordClient
+            new MessageBuilder(client).withChannel(client
+                    .getOrCreatePMChannel(user))
+                    .appendContent(message)
+                    .send();
+        } catch (DiscordException e) {
+            //Stills needs to be treated
+            //This exception occurs when the content is blank (no content)
+        }
     }
 }
