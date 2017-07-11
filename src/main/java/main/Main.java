@@ -13,6 +13,26 @@ import java.io.FileNotFoundException;
 public class Main {
 
     /**
+     * Config missing Error Message
+     */
+    private static final String CONFIG_NOT_FOUND_ERROR
+            = "RexCord: Config file not found. "
+            + "Make sure it is created and located in "
+            + "the correct directory.";
+
+    /**
+     * Default Error Message
+     */
+    private static final String ERROR_MESSAGE
+            = "RexCord: Unable to start RexCord!";
+
+    /**
+     * RexCord terminating message
+     */
+    private static final String TERMINATING_MESSAGE
+            = "RexCord: Terminating RexCord...";
+
+    /**
      * Indicates that this class should not be instantiated
      */
     private Main() {
@@ -34,20 +54,20 @@ public class Main {
 
             startClient();
         } catch (FileNotFoundException e) { // Config File doesnt exist
-            System.out.println(BotUtils.ERROR_MESSAGE);
-            System.out.println(BotUtils.CONFIG_NOT_FOUND_ERROR);
-            System.out.println(BotUtils.TERMINATING_MESSAGE);
+            System.out.println(ERROR_MESSAGE);
+            System.out.println(CONFIG_NOT_FOUND_ERROR);
+            System.out.println(TERMINATING_MESSAGE);
 
         } catch (ArrayIndexOutOfBoundsException e1) { // Bad config
-            System.out.println(BotUtils.ERROR_MESSAGE);
+            System.out.println(ERROR_MESSAGE);
             System.out.println(e1.getMessage());
-            System.out.println(BotUtils.TERMINATING_MESSAGE);
+            System.out.println(TERMINATING_MESSAGE);
 
         } catch (DiscordException e2) { // Invalid token
-            System.out.println(BotUtils.ERROR_MESSAGE);
+            System.out.println(ERROR_MESSAGE);
             System.out.println("Unexpected error while loading RexCord."
                     + "\nDid you insert a valid token?");
-            System.out.println(BotUtils.TERMINATING_MESSAGE);
+            System.out.println(TERMINATING_MESSAGE);
         }
 
     }
