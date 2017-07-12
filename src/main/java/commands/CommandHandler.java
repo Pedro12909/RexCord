@@ -17,15 +17,16 @@ public class CommandHandler {
     /**
      * A list of all available commands
      */
-    private static List<BotCommand> availableCommands
-            = new ArrayList<>(Arrays.asList(
-                    new HelloCommand(),
-                    new UptimeCommand(),
-                    new AboutCommand(),
-                    new InfoCommand(),
-                    new ShutdownCommand(),
-                    new RequestCommand()
-            ));
+    private static List<BotCommand> availableCommands = new ArrayList<>();
+
+    static {
+        availableCommands.add(new HelloCommand());
+        availableCommands.add(new InfoCommand());
+        availableCommands.add(new AboutCommand());
+        availableCommands.add(new ShutdownCommand());
+        availableCommands.add(new UptimeCommand());
+    }
+
     /**
      * Returns all available commands
      * @return A List with all the available commands

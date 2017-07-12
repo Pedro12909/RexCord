@@ -51,26 +51,6 @@ public final class BotUtils {
             = System.getProperty("user.dir") + "/config/config.cfg";
 
     /**
-     * Config missing Error Message
-     */
-    public static final String CONFIG_NOT_FOUND_ERROR
-            = "RexCord: Config file not found. "
-            + "Make sure it is created and located in "
-            + "the correct directory.";
-
-    /**
-     * Default Error Message
-     */
-    public static final String ERROR_MESSAGE
-            = "RexCord: Unable to start RexCord!";
-
-    /**
-     * RexCord terminating message
-     */
-    public static final String TERMINATING_MESSAGE
-            = "RexCord: Terminating RexCord...";
-
-    /**
      * Prevents class from being instantiated
      */
     private BotUtils() {
