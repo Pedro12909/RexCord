@@ -24,6 +24,7 @@ public class CommandHandler {
         availableCommands.add(new InfoCommand());
         availableCommands.add(new AboutCommand());
         availableCommands.add(new ShutdownCommand());
+        availableCommands.add(new MathCommand());
         availableCommands.add(new UptimeCommand());
     }
 

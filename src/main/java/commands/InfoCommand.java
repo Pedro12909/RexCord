@@ -43,8 +43,8 @@ public class InfoCommand implements BotCommand {
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        String commandInformation = "All commands information\nPrefix being"
-                + "used" + DiscordMarkdown.bold(BotUtils.getBotPrefix());
+        String commandInformation = "All commands information\nPrefix being "
+                + "used:" + DiscordMarkdown.bold(BotUtils.getBotPrefix());
         List<BotCommand> commands = CommandHandler.getAvailableCommands();
         for (int i = 0; i < commands.size(); i++) {
             commandInformation += "\n"
