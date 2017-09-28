@@ -2,12 +2,17 @@ package commands;
 
 import sx.blah.discord.handle.impl.events.guild
         .channel.message.MessageReceivedEvent;
-import utils.BotUtils;
+import main.RexCord;
 
 /**
  * Calculates how much time RexCord has been up
  */
 public class UptimeCommand implements BotCommand {
+
+    /**
+     * Main instance of RexCord
+     */
+    private RexCord rexCord;
 
     /**
      * Used to call the command via a message
@@ -38,6 +43,14 @@ public class UptimeCommand implements BotCommand {
     private static final int MM_PER_SECOND = 1000;
 
     /**
+     * Creates an instance of the Uptime Command class
+     * @param rexCord main instance of RexCord
+     */
+    public UptimeCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
+
+    /**
      * Gets command name
      * @return command name
      */
@@ -54,7 +67,7 @@ public class UptimeCommand implements BotCommand {
     public final void runCommand(MessageReceivedEvent event, String args) {
         long runtime = getUptimeInMilliseconds();
 
-        BotUtils.sendMessage(event.getChannel(),
+        rexCord.sendMessage(event.getChannel(),
                 getFormattedUptime(runtime));
     }
 
@@ -63,7 +76,7 @@ public class UptimeCommand implements BotCommand {
      * @return uptime of the Java virtual machine in milliseconds.
      */
     private long getUptimeInMilliseconds() {
-        return System.currentTimeMillis() - BotUtils.getStartTime();
+        return System.currentTimeMillis() - rexCord.getStartTime();
     }
 
     /**
@@ -81,10 +94,5 @@ public class UptimeCommand implements BotCommand {
         return String.format("RexCord has been sleep deprived for "
                 + "%d hours, %d minutes and %d seconds! :sleeping: ",
                 (int) hour, (int) minute, second);
-    }
-
-    @Override
-    public final String getCommandDescription() {
-        return COMMAND_DESCRIPTION;
     }
 }

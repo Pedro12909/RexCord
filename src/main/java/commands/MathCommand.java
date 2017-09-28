@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package commands;
 
+import main.RexCord;
 import sx.blah.discord.handle.impl.events.guild.channel.message
         .MessageReceivedEvent;
-import utils.BotUtils;
 import utils.MathHandler;
 
 /**
  * Calculates a certain expression that the user typed
  */
 public class MathCommand implements BotCommand {
+
+    /**
+     * Main instance of RexCord
+     */
+    private RexCord rexCord;
 
     /**
      * Represents the command name
@@ -26,6 +26,14 @@ public class MathCommand implements BotCommand {
             = "Calculates a certain mathematical operation";
 
     /**
+     * Creates an instance of Math Command class
+     * @param rexCord main instance of rexCord
+     */
+    public MathCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
+
+    /**
      * Gets command name
      *
      * @return A String with the Command name
@@ -36,23 +44,15 @@ public class MathCommand implements BotCommand {
     }
 
     /**
-     * Gets command name
-     *
-     * @return A String with the Command description
-     */
-    @Override
-    public final String getCommandDescription() {
-        return COMMAND_DESCRIPTION;
-    }
-
-    /**
      * Runs the command triggered by the user
      *
      * @param event the event triggered by the user
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        BotUtils.sendMessage(event.getChannel(),
+        // FIXME due to args being a vector,
+        // it is only selecting the first argument
+        rexCord.sendMessage(event.getChannel(),
                 MathHandler.handleOperation(args));
     }
 

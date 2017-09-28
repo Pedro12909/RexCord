@@ -3,7 +3,6 @@ package main;
 import commands.CommandHandler;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
-import utils.BotUtils;
 import utils.ConfigReader;
 import java.io.FileNotFoundException;
 
@@ -44,43 +43,43 @@ public class Main {
      * @param args passed arguments
      */
     public static void main(String[] args) {
+        RexCord rexCord = new RexCord();
 
         // Sets start time for uptime command
-        BotUtils.setStartTime(System.currentTimeMillis());
+        rexCord.setStartTime(System.currentTimeMillis());
 
         try {
             // Reads config file
-            new ConfigReader(BotUtils.DEFAULT_CONFIG_PATH);
+            new ConfigReader(rexCord);
 
-            startClient();
+            startClient(rexCord);
         } catch (FileNotFoundException e) { // Config File doesnt exist
-            System.out.println(ERROR_MESSAGE);
-            System.out.println(CONFIG_NOT_FOUND_ERROR);
-            System.out.println(TERMINATING_MESSAGE);
+            System.out.println(RexCord.ERROR_MESSAGE);
+            System.out.println(RexCord.CONFIG_NOT_FOUND_ERROR);
+            System.out.println(RexCord.TERMINATING_MESSAGE);
 
         } catch (ArrayIndexOutOfBoundsException e1) { // Bad config
-            System.out.println(ERROR_MESSAGE);
+            System.out.println(RexCord.ERROR_MESSAGE);
             System.out.println(e1.getMessage());
-            System.out.println(TERMINATING_MESSAGE);
+            System.out.println(RexCord.TERMINATING_MESSAGE);
 
         } catch (DiscordException e2) { // Invalid token
-            System.out.println(ERROR_MESSAGE);
-            System.out.println("Unexpected error while loading RexCord."
-                    + "\nDid you insert a valid token?");
-            System.out.println(TERMINATING_MESSAGE);
+            System.out.println(RexCord.ERROR_MESSAGE);
+            System.out.println(RexCord.UNEXPECTED_ERROR_MESSAGE);
+            System.out.println(RexCord.TERMINATING_MESSAGE);
         }
-
     }
 
     /**
      * Starts Bot Client
+     * @param rexCord main instance of RexCord
      */
-    private static void startClient() {
+    private static void startClient(RexCord rexCord) {
         // Creates a new Client
-        IDiscordClient client = BotUtils.createDiscordClient();
+        IDiscordClient client = rexCord.createDiscordClient();
 
         // Registers a new listener
-        client.getDispatcher().registerListener(new CommandHandler());
+        client.getDispatcher().registerListener(new CommandHandler(rexCord));
 
         // Logs in
         client.login();

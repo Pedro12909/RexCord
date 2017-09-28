@@ -1,9 +1,9 @@
 package commands;
 
+import main.RexCord;
 import sx.blah.discord.handle.impl.events.guild.channel.message
         .MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IUser;
-import utils.BotUtils;
 import utils.DiscordMarkdown;
 
 /**
@@ -12,15 +12,29 @@ import utils.DiscordMarkdown;
 public class RequestCommand implements BotCommand {
 
     /**
+     * Main instance of RexCord
+     */
+    private RexCord rexCord;
+
+    /**
      * Represents the command names
      */
     private static final String COMMAND_NAME = "request";
+
     /**
      * Represents the command description
      */
     private static final String COMMAND_DESCRIPTION =
             "Requests a certain command"
             + "to Admin";
+
+    /**
+     * Creates an instance of Request Command class
+     * @param rexCord main instance of RexCord
+     */
+    public RequestCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
 
     /**
      * Gets command name
@@ -33,25 +47,15 @@ public class RequestCommand implements BotCommand {
     }
 
     /**
-     * Gets command description
-     *
-     * @return command description
-     */
-    @Override
-    public final String getCommandDescription() {
-        return COMMAND_DESCRIPTION;
-    }
-
-    /**
      * Runs the command triggered by the user
      *
      * @param event the event triggered by the user
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        BotUtils.sendMessageToUser(BotUtils.getClient().getApplicationOwner(),
+        rexCord.sendMessageToUser(rexCord.getClient().getApplicationOwner(),
                 buildMessage(event.getAuthor(), event.getMessage().getContent()
-                        .replaceAll(BotUtils.getBotPrefix(), "")
+                        .replaceAll(rexCord.getBotPrefix(), "")
                         .replaceAll(COMMAND_NAME, "")));
     }
 
@@ -66,7 +70,7 @@ public class RequestCommand implements BotCommand {
         return user.mention() + " just requested you something!\n"
                 + DiscordMarkdown
                         .boldItalic(message
-                                .replaceAll(BotUtils.getBotPrefix(), "")
+                                .replaceAll(rexCord.getBotPrefix(), "")
                                 .replaceAll(COMMAND_NAME, ""));
     }
 }

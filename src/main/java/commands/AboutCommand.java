@@ -2,13 +2,18 @@ package commands;
 
 import sx.blah.discord.handle.impl.events.guild.channel.message.
         MessageReceivedEvent;
-import utils.BotUtils;
+import main.RexCord;
 import utils.DiscordMarkdown;
 
 /**
  * Informs user about the RexCord information and documentation
  */
 public class AboutCommand implements BotCommand {
+
+    /**
+     * Instance of RexCord
+     */
+    private RexCord rexCord;
 
     /**
      * Used to call this command via a message
@@ -36,6 +41,14 @@ public class AboutCommand implements BotCommand {
             = "https://github.com/Just-Some-Bots/MusicBot";
 
     /**
+     * Creates an instance of BotCommand
+     * @param rexCord instance of RexCord
+     */
+    public AboutCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
+
+    /**
      * Gets command name
      *
      * @return command name
@@ -53,7 +66,7 @@ public class AboutCommand implements BotCommand {
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        BotUtils.sendMessage(event.getChannel(), "RexCord is a Discord Bot "
+        rexCord.sendMessage(event.getChannel(), "RexCord is a Discord Bot "
                 + "written in java, that uses the popular interface "
                 + DiscordMarkdown.boldItalic("Discord4J") + " developed by "
                 + DiscordMarkdown.bold("austinv11") + "."
@@ -64,15 +77,5 @@ public class AboutCommand implements BotCommand {
                 + "\nAustinv11 on GitHub: " + AUSTINV11_GITHUB_REPOSITORY
                 + "\nJust Some Bots Music Bot on GitHub: "
                 + JUST_SOME_MUSIC_BOT_REPOSITORY);
-    }
-
-    /**
-     * Gets command description
-     *
-     * @return A String with the Command description
-     */
-    @Override
-    public final String getCommandDescription() {
-        return COMMAND_DESCRIPTION;
     }
 }

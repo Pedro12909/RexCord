@@ -6,9 +6,10 @@
 package commands;
 
 import java.util.List;
+
+import main.RexCord;
 import sx.blah.discord.handle.impl.events.guild.channel.message.
         MessageReceivedEvent;
-import utils.BotUtils;
 import utils.DiscordMarkdown;
 
 /**
@@ -17,14 +18,22 @@ import utils.DiscordMarkdown;
 public class InfoCommand implements BotCommand {
 
     /**
+     * Instance of RexCord
+     */
+    private RexCord rexCord;
+
+    /**
      * Represents the command name
      */
     private static final String COMMAND_NAME = "info";
+
     /**
-     * Represents the command description
+     * Creates an instance of the Info Command Class
+     * @param rexCord main instance of RexCord
      */
-    private static final String COMMAND_DESCRIPTION
-            = "Shows all bot commands information";
+    public InfoCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
 
     /**
      * Gets command name
@@ -44,25 +53,14 @@ public class InfoCommand implements BotCommand {
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
         String commandInformation = "All commands information\nPrefix being "
-                + "used:" + DiscordMarkdown.bold(BotUtils.getBotPrefix());
-        List<BotCommand> commands = CommandHandler.getAvailableCommands();
+                + "used:" + DiscordMarkdown.bold(rexCord.getBotPrefix());
+        List<BotCommand> commands =
+                rexCord.getCommandHandler()
+                .getAvailableCommands();
         for (int i = 0; i < commands.size(); i++) {
             commandInformation += "\n"
-                    + DiscordMarkdown.bold(commands.get(i).getCommandName())
-                    + ":"
-                    + DiscordMarkdown.italic(commands.get(i).
-                            getCommandDescription());
+                    + DiscordMarkdown.bold(commands.get(i).getCommandName());
         }
-        BotUtils.sendMessage(event.getChannel(), commandInformation);
-    }
-
-    /**
-     * Gets command description
-     *
-     * @return A String with the Command description
-     */
-    @Override
-    public final String getCommandDescription() {
-        return COMMAND_DESCRIPTION;
+        rexCord.sendMessage(event.getChannel(), commandInformation);
     }
 }

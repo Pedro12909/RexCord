@@ -13,11 +13,7 @@ public interface BotCommand {
      * @return command name
      */
     String getCommandName();
-    /**
-     * The command description
-     * @return A String with the command description
-     */
-    String getCommandDescription();
+
     /**
      * Command execution is handled here
      * @param event passed event

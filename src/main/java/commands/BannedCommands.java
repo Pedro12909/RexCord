@@ -5,7 +5,7 @@
  */
 package commands;
 
-import utils.BotUtils;
+import main.RexCord;
 
 /**
  * Class to check banned commands
@@ -13,14 +13,27 @@ import utils.BotUtils;
 public class BannedCommands {
 
     /**
+     * Main instance of RexCord
+     */
+    private RexCord rexCord;
+
+    /**
+     * Creates an instance of Banned Commands
+     * @param rexCord main instance of RexCord
+     */
+    public BannedCommands(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
+
+    /**
      * Checks if a certain command is banned
      *
      * @param command String with the command
      * @return true if command is banned, false if not
      */
-    public static boolean isCommandBanned(String command) {
-        if (BotUtils.getBotBannedCommands() != null) {
-            String[] bannedCommands = BotUtils.getBotBannedCommands()
+    public final boolean isCommandBanned(String command) {
+        if (rexCord.getBotBannedCommands() != null) {
+            String[] bannedCommands = rexCord.getBotBannedCommands()
                     .split(",");
             for (int i = 0; i < bannedCommands.length; i++) {
                 if (bannedCommands[i].replaceFirst("\\s+", "").
@@ -31,8 +44,4 @@ public class BannedCommands {
         }
         return false;
     }
-    /**
-     * Hides default constructor
-     */
-    private BannedCommands() { };
 }
