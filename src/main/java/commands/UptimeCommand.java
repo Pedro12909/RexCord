@@ -2,7 +2,7 @@ package commands;
 
 import sx.blah.discord.handle.impl.events.guild
         .channel.message.MessageReceivedEvent;
-import utils.BotUtils;
+import main.RexCord;
 
 /**
  * Calculates how much time RexCord has been up
@@ -10,15 +10,23 @@ import utils.BotUtils;
 public class UptimeCommand implements BotCommand {
 
     /**
+     * Main instance of RexCord
+     */
+    private RexCord rexCord;
+
+    /**
      * Used to call the command via a message
      */
     private static final String COMMAND_NAME = "uptime";
-
+    /**
+     * Represents the command description
+     */
+    private static final String COMMAND_DESCRIPTION =
+            "Shows how much time the bot has been on";
     /**
      * Amount of hours per day
      */
     private static final int HOURS_PER_DAY = 24;
-
     /**
      * Amount of minutes per hour
      */
@@ -35,12 +43,29 @@ public class UptimeCommand implements BotCommand {
     private static final int MM_PER_SECOND = 1000;
 
     /**
+     * Creates an instance of the Uptime Command class
+     * @param rexCord main instance of RexCord
+     */
+    public UptimeCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
+
+    /**
      * Gets command name
      * @return command name
      */
     @Override
     public final String getCommandName() {
         return COMMAND_NAME;
+    }
+
+    /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
     }
 
     /**
@@ -51,7 +76,7 @@ public class UptimeCommand implements BotCommand {
     public final void runCommand(MessageReceivedEvent event, String args) {
         long runtime = getUptimeInMilliseconds();
 
-        BotUtils.sendMessage(event.getChannel(),
+        rexCord.sendMessage(event.getChannel(),
                 getFormattedUptime(runtime));
     }
 
@@ -60,7 +85,7 @@ public class UptimeCommand implements BotCommand {
      * @return uptime of the Java virtual machine in milliseconds.
      */
     private long getUptimeInMilliseconds() {
-        return System.currentTimeMillis() - BotUtils.getStartTime();
+        return System.currentTimeMillis() - rexCord.getStartTime();
     }
 
     /**

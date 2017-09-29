@@ -2,7 +2,7 @@ package commands;
 
 import sx.blah.discord.handle.impl.events.guild
         .channel.message.MessageReceivedEvent;
-import utils.BotUtils;
+import main.RexCord;
 
 /**
  * Logs out and terminates application
@@ -10,9 +10,28 @@ import utils.BotUtils;
 public class ShutdownCommand implements BotCommand {
 
     /**
+     * Main instance of RexCord
+     */
+    private RexCord rexCord;
+
+    /**
      * Used to call this command via a message
      */
-    private static final String COMMAND_NAME = "shutdown";
+    private static final String COMMAND_NAME
+            = "shutdown";
+    /**
+     * Command description
+     */
+    private static final String COMMAND_DESCRIPTION
+            = "Shuts down RexCord";
+
+    /**
+     * Creates an instance of Shutdown Command class
+     * @param rexCord main instance of RexCord
+     */
+    public ShutdownCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
 
     /**
      * Returns command name
@@ -24,14 +43,23 @@ public class ShutdownCommand implements BotCommand {
     }
 
     /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Runs this command
      * @param event passed event
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        BotUtils.sendMessage(event.getChannel(),
+        rexCord.sendMessage(event.getChannel(),
                 "Disconnecting! :wave:");
-        BotUtils.getClient().logout();
+        rexCord.getClient().logout();
         System.exit(0);
     }
 }

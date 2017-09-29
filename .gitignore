@@ -3,3 +3,4 @@ target/
 modules/
 *.iml
 config/config.cfg
+config/permissions.xml

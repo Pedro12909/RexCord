@@ -1,8 +1,8 @@
 package commands;
 
-import sx.blah.discord.handle.impl.events.guild
-        .channel.message.MessageReceivedEvent;
-import utils.BotUtils;
+import main.RexCord;
+import sx.blah.discord.handle.impl.events
+        .guild.channel.message.MessageReceivedEvent;
 
 /**
  * Greets user
@@ -10,12 +10,31 @@ import utils.BotUtils;
 public class HelloCommand implements BotCommand {
 
     /**
+     * Main instance of RexCord
+     */
+    private RexCord rexCord;
+
+    /**
      * Used to call this command via a message
      */
     private static final String COMMAND_NAME = "greet";
 
     /**
+     * Represents the command description
+     */
+    private static final String COMMAND_DESCRIPTION = "Greets the user";
+
+    /**
+     * Creates an instance of the Hello Command Class
+     * @param rexCord main instance of RexCord
+     */
+    public HelloCommand(RexCord rexCord) {
+        this.rexCord = rexCord;
+    }
+
+    /**
      * Gets command name
+     *
      * @return command name
      */
     @Override
@@ -24,12 +43,21 @@ public class HelloCommand implements BotCommand {
     }
 
     /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Runs command
      */
     @Override
-    public final void runCommand(MessageReceivedEvent event, String args)  {
+    public final void runCommand(MessageReceivedEvent event, String args) {
         String messageToSend = "Hello, " + event.getAuthor().mention();
 
-        BotUtils.sendMessage(event.getChannel(), messageToSend);
+        rexCord.sendMessage(event.getChannel(), messageToSend);
     }
 }
