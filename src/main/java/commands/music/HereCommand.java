@@ -22,6 +22,12 @@ public class HereCommand implements BotCommand {
     private static final String COMMAND_NAME = "here";
 
     /**
+     * Represents the command description
+     */
+    private static final String COMMAND_DESCRIPTION
+            = "Invokes RexCord to the channel the user is in";
+
+    /**
      * Creates an instance of the Here Command class
      * @param rexCord main instance of RexCord
      */
@@ -36,6 +42,15 @@ public class HereCommand implements BotCommand {
     @Override
     public final String getCommandName() {
         return COMMAND_NAME;
+    }
+
+    /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
     }
 
     /**

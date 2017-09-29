@@ -17,11 +17,13 @@ public class ShutdownCommand implements BotCommand {
     /**
      * Used to call this command via a message
      */
-    private static final String COMMAND_NAME = "shutdown";
+    private static final String COMMAND_NAME
+            = "shutdown";
     /**
      * Command description
      */
-    private static final String COMMAND_DESCRIPTION = "Shutdowns bot";
+    private static final String COMMAND_DESCRIPTION
+            = "Shuts down RexCord";
 
     /**
      * Creates an instance of Shutdown Command class
@@ -38,6 +40,15 @@ public class ShutdownCommand implements BotCommand {
     @Override
     public final String getCommandName() {
         return COMMAND_NAME;
+    }
+
+    /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
     }
 
     /**

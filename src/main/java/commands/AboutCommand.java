@@ -59,6 +59,15 @@ public class AboutCommand implements BotCommand {
     }
 
     /**
+     * Gets command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Informs the user who triggered this event with about the RexCord
      * information and documentation
      *

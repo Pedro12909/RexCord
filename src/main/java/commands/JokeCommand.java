@@ -49,6 +49,15 @@ public class JokeCommand implements BotCommand {
     }
 
     /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Executes command
      * @param event passed event
      * @param args passed arguments

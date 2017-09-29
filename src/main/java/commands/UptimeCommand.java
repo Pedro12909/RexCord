@@ -60,6 +60,15 @@ public class UptimeCommand implements BotCommand {
     }
 
     /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Runs Uptime Command
      * @param event passed event
      */

@@ -22,6 +22,12 @@ public class LeaveCommand implements BotCommand {
     private static final String COMMAND_NAME = "leave";
 
     /**
+     * Represents the command description
+     */
+    private static final String COMMAND_DESCRIPTION
+            = "Makes RexCord leave current channel";
+
+    /**
      * Creates an instance of Leave Command Class
      * @param rexCord main instance of RexCord
      */
@@ -36,6 +42,15 @@ public class LeaveCommand implements BotCommand {
     @Override
     public final String getCommandName() {
         return COMMAND_NAME;
+    }
+
+    /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
     }
 
     /**

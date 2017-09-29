@@ -37,12 +37,9 @@ public class CommandHandler {
                 new UptimeCommand(rexCord),
                 new AboutCommand(rexCord),
                 new ShutdownCommand(rexCord),
-                new HereCommand(rexCord),
-                new LeaveCommand(rexCord),
                 new MathCommand(rexCord),
                 new InfoCommand(rexCord),
-                new RequestCommand(rexCord),
-                new JokeCommand(rexCord)
+                new RequestCommand(rexCord)
         ));
     }
 

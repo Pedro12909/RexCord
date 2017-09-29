@@ -47,6 +47,15 @@ public class RequestCommand implements BotCommand {
     }
 
     /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Runs the command triggered by the user
      *
      * @param event the event triggered by the user

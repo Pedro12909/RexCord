@@ -28,6 +28,12 @@ public class InfoCommand implements BotCommand {
     private static final String COMMAND_NAME = "info";
 
     /**
+     * Command description
+     */
+    private static final String COMMAND_DESCRIPTION =
+            "Displays information about all available commands";
+
+    /**
      * Creates an instance of the Info Command Class
      * @param rexCord main instance of RexCord
      */
@@ -46,6 +52,14 @@ public class InfoCommand implements BotCommand {
     }
 
     /**
+     * Gets command description
+     * @return command description
+     */
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Runs the command triggered by the user
      *
      * @param event the event triggered by the user
@@ -59,7 +73,10 @@ public class InfoCommand implements BotCommand {
                 .getAvailableCommands();
         for (int i = 0; i < commands.size(); i++) {
             commandInformation += "\n"
-                    + DiscordMarkdown.bold(commands.get(i).getCommandName());
+                    + DiscordMarkdown.bold(commands.get(i).getCommandName())
+                    + " == "
+                    + DiscordMarkdown.bold(commands.get(i)
+                    .getCommandDescription());
         }
         rexCord.sendMessage(event.getChannel(), commandInformation);
     }
