@@ -1,7 +1,5 @@
 package commands;
 
-import commands.music.HereCommand;
-import commands.music.LeaveCommand;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message
         .MessageReceivedEvent;
