@@ -12,6 +12,9 @@ import sx.blah.discord.handle.obj.IVoiceChannel;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.MessageBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Contains important methods and variables for the Bot
  */
@@ -31,6 +34,11 @@ public final class RexCord {
      * Instance of Command Handler
      */
     private CommandHandler commandHandler;
+
+    /**
+     * List of Text Channels that RexCord listens to
+     */
+    private List<Long> listenChannels;
 
     /**
      * System's start time
@@ -96,6 +104,7 @@ public final class RexCord {
     public RexCord() {
         bannedCommands = new BannedCommands(this);
         commandHandler = new CommandHandler(this);
+        listenChannels = new ArrayList<>();
     }
 
     /**
@@ -168,6 +177,22 @@ public final class RexCord {
      */
     public String getBotPrefix() {
         return botPrefix;
+    }
+
+    /**
+     * Gets List of ListenChannels
+     * @return list
+     */
+    public List<Long> getListenChannels() {
+        return listenChannels;
+    }
+
+    /**
+     * Sets List of ListenChannels
+     * @param listenChannels listenChannels
+     */
+    public void setListenChannels(List<Long> listenChannels) {
+        this.listenChannels = listenChannels;
     }
 
     /**
