@@ -46,7 +46,8 @@ public class CommandHandler {
                 new ShutdownCommand(rexCord),
                 new MathCommand(rexCord),
                 new InfoCommand(rexCord),
-                new RequestCommand(rexCord)
+                new RequestCommand(rexCord),
+                new JokeCommand(rexCord)
         ));
     }
 
