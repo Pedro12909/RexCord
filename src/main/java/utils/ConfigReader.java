@@ -73,6 +73,10 @@ public class ConfigReader {
                         break;
                     case "listen_channels":
                         rexCord.setListenChannels(readListenChannels(option));
+                        break;
+                    case "giphy_key":
+                        rexCord.setGiphyAPIKey(option);
+                        break;
                     default:
                         break;
                 }

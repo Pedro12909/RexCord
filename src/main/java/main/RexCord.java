@@ -56,6 +56,11 @@ public final class RexCord {
     private String botBannedCommands;
 
     /**
+     * Public API Key from Giphy
+     */
+    private String giphyAPIKey;
+
+    /**
      * Only messages starting with this prefix will be handled
      */
     private static String botPrefix = "//";
@@ -161,6 +166,22 @@ public final class RexCord {
      */
     public String getBotBannedCommands() {
         return botBannedCommands;
+    }
+
+    /**
+     * Gets current Giphy API Key
+     * @return giphy api key
+     */
+    public String getGiphyAPIKey() {
+        return giphyAPIKey;
+    }
+
+    /**
+     * Sets giphy API key
+     * @param giphyAPIKey giphy API key
+     */
+    public void setGiphyAPIKey(String giphyAPIKey) {
+        this.giphyAPIKey = giphyAPIKey;
     }
 
     /**
