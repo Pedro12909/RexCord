@@ -11,6 +11,8 @@ import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.handle.obj.IVoiceChannel;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.MessageBuilder;
+import utils.RemindHandler;
+import utils.ReminderDispatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,11 @@ public final class RexCord {
      * List of Text Channels that RexCord listens to
      */
     private List<Long> listenChannels;
+
+    /**
+     * Instance of Remind Handler
+     */
+    private RemindHandler remindHandler;
 
     /**
      * System's start time
@@ -110,6 +117,10 @@ public final class RexCord {
         bannedCommands = new BannedCommands(this);
         commandHandler = new CommandHandler(this);
         listenChannels = new ArrayList<>();
+        remindHandler = new RemindHandler(this);
+
+        Thread dispatcher = new Thread(new ReminderDispatcher(remindHandler));
+        dispatcher.start();
     }
 
     /**
@@ -206,6 +217,14 @@ public final class RexCord {
      */
     public List<Long> getListenChannels() {
         return listenChannels;
+    }
+
+    /**
+     * Gets main ReminderHandler instance
+     * @return main ReminderHandler instance
+     */
+    public RemindHandler getRemindHandler() {
+        return remindHandler;
     }
 
     /**
