@@ -43,6 +43,15 @@ public class HelloCommand implements BotCommand {
     }
 
     /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Runs command
      */
     @Override

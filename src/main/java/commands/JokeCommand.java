@@ -49,6 +49,15 @@ public class JokeCommand implements BotCommand {
     }
 
     /**
+     * Gets Command description
+     * @return command description
+     */
+    @Override
+    public final String getCommandDescription() {
+        return COMMAND_DESCRIPTION;
+    }
+
+    /**
      * Executes command
      * @param event passed event
      * @param args passed arguments
@@ -71,8 +80,8 @@ public class JokeCommand implements BotCommand {
         }
 
         try {
-            JSONObject json = JsonReader
-                    .readJsonFromUrl("https://reddit/r/" + sub);
+            String queryUrl = "https://www.reddit.com/r/" + sub + ".json";
+            JSONObject json = JsonReader.readJsonFromUrl(queryUrl);
             JSONArray children = json.getJSONObject("data")
                     .getJSONArray("children");
 

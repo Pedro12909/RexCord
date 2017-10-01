@@ -12,6 +12,9 @@ import sx.blah.discord.handle.obj.IVoiceChannel;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.MessageBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Contains important methods and variables for the Bot
  */
@@ -33,6 +36,11 @@ public final class RexCord {
     private CommandHandler commandHandler;
 
     /**
+     * List of Text Channels that RexCord listens to
+     */
+    private List<Long> listenChannels;
+
+    /**
      * System's start time
      */
     private long startTime;
@@ -46,6 +54,11 @@ public final class RexCord {
      * Bot's banned commands
      */
     private String botBannedCommands;
+
+    /**
+     * Public API Key from Giphy
+     */
+    private String giphyAPIKey;
 
     /**
      * Only messages starting with this prefix will be handled
@@ -96,6 +109,7 @@ public final class RexCord {
     public RexCord() {
         bannedCommands = new BannedCommands(this);
         commandHandler = new CommandHandler(this);
+        listenChannels = new ArrayList<>();
     }
 
     /**
@@ -155,6 +169,22 @@ public final class RexCord {
     }
 
     /**
+     * Gets current Giphy API Key
+     * @return giphy api key
+     */
+    public String getGiphyAPIKey() {
+        return giphyAPIKey;
+    }
+
+    /**
+     * Sets giphy API key
+     * @param giphyAPIKey giphy API key
+     */
+    public void setGiphyAPIKey(String giphyAPIKey) {
+        this.giphyAPIKey = giphyAPIKey;
+    }
+
+    /**
      * Gets CommandHandler
      * @return CommandHandler
      */
@@ -168,6 +198,22 @@ public final class RexCord {
      */
     public String getBotPrefix() {
         return botPrefix;
+    }
+
+    /**
+     * Gets List of ListenChannels
+     * @return list
+     */
+    public List<Long> getListenChannels() {
+        return listenChannels;
+    }
+
+    /**
+     * Sets List of ListenChannels
+     * @param listenChannels listenChannels
+     */
+    public void setListenChannels(List<Long> listenChannels) {
+        this.listenChannels = listenChannels;
     }
 
     /**

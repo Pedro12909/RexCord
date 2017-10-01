@@ -1,11 +1,11 @@
 package commands;
 
-import commands.music.HereCommand;
-import commands.music.LeaveCommand;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message
         .MessageReceivedEvent;
 import main.RexCord;
+import sx.blah.discord.handle.obj.IChannel;
+import sx.blah.discord.util.MissingPermissionsException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +27,13 @@ public class CommandHandler {
     private final List<BotCommand> availableCommands;
 
     /**
+     * When RexCord has no permission to post in a text channel
+     */
+    private static final String NO_PERM_ERROR =
+            "Sorry, but I don't have permission to post there "
+                    + ":zipper_mouth:";
+
+    /**
      * Creates an instance of CommandHandler
      * @param rexCord main instance of RexCord
      */
@@ -37,12 +44,11 @@ public class CommandHandler {
                 new UptimeCommand(rexCord),
                 new AboutCommand(rexCord),
                 new ShutdownCommand(rexCord),
-                new HereCommand(rexCord),
-                new LeaveCommand(rexCord),
                 new MathCommand(rexCord),
                 new InfoCommand(rexCord),
                 new RequestCommand(rexCord),
-                new JokeCommand(rexCord)
+                new JokeCommand(rexCord),
+                new GifCommand(rexCord)
         ));
     }
 
@@ -83,9 +89,32 @@ public class CommandHandler {
             // If given command name is a valid command name, executes it
             if (commandString.equals(cmd.getCommandName())
                     && !rexCord.getBannedCommands()
-                    .isCommandBanned(commandString)) {
-                cmd.runCommand(event, String.join(" ", args));
+                    .isCommandBanned(commandString)
+                    && textChannelIsSetAsListen(event.getChannel())) {
+                try {
+                    cmd.runCommand(event, String.join(" ", args));
+                } catch (MissingPermissionsException e) {
+                    event.getAuthor()
+                            .getOrCreatePMChannel()
+                            .sendMessage(NO_PERM_ERROR);
+                }
             }
         }
+    }
+
+    /**
+     * Checks if RexCord is listening to given text channel
+     * @param channel given channel
+     * @return true if is listening
+     */
+    private boolean textChannelIsSetAsListen(IChannel channel) {
+        for (long id : rexCord.getListenChannels()) {
+            IChannel c = rexCord.getClient().getChannelByID(id);
+            if (channel.equals(c)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -4,6 +4,8 @@ import main.RexCord;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -69,6 +71,12 @@ public class ConfigReader {
                     case "prefix":
                         rexCord.setBotPrefix(option);
                         break;
+                    case "listen_channels":
+                        rexCord.setListenChannels(readListenChannels(option));
+                        break;
+                    case "giphy_key":
+                        rexCord.setGiphyAPIKey(option);
+                        break;
                     default:
                         break;
                 }
@@ -76,5 +84,28 @@ public class ConfigReader {
         }
 
         sc.close();
+    }
+
+    /**
+     * Reads list of channels that RexCord should listen from config
+     * @param option channels defined in config
+     * @return List of channel IDs
+     */
+    private List<Long> readListenChannels(String option) {
+        List<Long> channels = new ArrayList<>();
+
+        String[] channelIDs = option.split(",");
+
+        for (String id : channelIDs) {
+            long longID = Long.parseLong(id.trim());
+
+            try {
+                channels.add(longID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return channels;
     }
 }
