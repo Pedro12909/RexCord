@@ -26,13 +26,13 @@ public class Main {
             = "RexCord: Unable to start RexCord!";
 
     /**
-     * RexCord terminating message
+     * RexCord terminating message					
      */
     private static final String TERMINATING_MESSAGE
             = "RexCord: Terminating RexCord...";
 
     /**
-     * Indicates that this class should not be instantiated
+     * Indicates that this class can be instantiated only once		
      */
     private Main() {
 
@@ -40,7 +40,11 @@ public class Main {
 
     /**
      * Main method
-     * @param args passed arguments
+     * @param args passed arguments		
+     * @exception FileNotFoundException
+     * @exception ArrayIndexOutOfBoundsException
+     * @exception DiscordException
+     * @return No return value
      */
     public static void main(String[] args) {
         RexCord rexCord = new RexCord();
@@ -72,7 +76,10 @@ public class Main {
 
     /**
      * Starts Bot Client
-     * @param rexCord main instance of RexCord
+     * Registers a new Listener
+     * Logs the client in 
+     * @param rexCord main instance of the RexCord class
+     * @return No return value
      */
     private static void startClient(RexCord rexCord) {
         // Creates a new Client
@@ -81,7 +88,7 @@ public class Main {
         // Registers a new listener
         client.getDispatcher().registerListener(new CommandHandler(rexCord));
 
-        // Logs in
+        // Logs the client in
         client.login();
     }
 }
