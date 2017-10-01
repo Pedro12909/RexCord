@@ -47,6 +47,7 @@ public class CommandHandler {
                 new MathCommand(rexCord),
                 new InfoCommand(rexCord),
                 new RequestCommand(rexCord),
+                new JokeCommand(rexCord),
                 new GifCommand(rexCord)
         ));
     }

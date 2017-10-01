@@ -80,8 +80,8 @@ public class JokeCommand implements BotCommand {
         }
 
         try {
-            JSONObject json = JsonReader
-                    .readJsonFromUrl("https://reddit/r/" + sub);
+            String queryUrl = "https://www.reddit.com/r/" + sub + ".json";
+            JSONObject json = JsonReader.readJsonFromUrl(queryUrl);
             JSONArray children = json.getJSONObject("data")
                     .getJSONArray("children");
 
