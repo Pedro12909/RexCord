@@ -1,12 +1,11 @@
 package utils;
 
 import main.RexCord;
+import model.Configuration;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Reads config file
@@ -27,9 +26,9 @@ public class ConfigReader {
     /**
      * Creates an instance of ConfigReader
      * @param rexCord main instance of RexCord
-     * @throws FileNotFoundException in case doesnt find config file
+     * @throws IOException in case doesnt find config file
      */
-    public ConfigReader(RexCord rexCord) throws FileNotFoundException {
+    public ConfigReader(RexCord rexCord) throws IOException {
         this.rexCord = rexCord;
         readFile();
     }
@@ -37,53 +36,22 @@ public class ConfigReader {
     /**
      * Reads config file and assigns each parameter value
      *
-     * @throws FileNotFoundException if config file is not found
+     * @throws IOException if config file is not found
      */
-    private void readFile() throws FileNotFoundException {
-        Scanner sc = new Scanner(new File(RexCord.DEFAULT_CONFIG_PATH));
-
-        int lineNumber = 0;
-
-        while (sc.hasNext()) {
-            String currentLine = sc.nextLine();
-            lineNumber++;
-
-            if (!currentLine.trim().equals("")
-                    && !currentLine.startsWith(RexCord.CONFIG_COMMENT)) {
-
-                String[] lineSplitted = currentLine.split("=");
-                String parameter = lineSplitted[0].trim();
-                String option = null;
-                try {
-                    option = lineSplitted[1].trim();
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new ArrayIndexOutOfBoundsException(
-                            String.format(MISSING_DEFINITION,
-                                    lineNumber, parameter));
-                }
-
-                switch (parameter) { //config parameters should be handled here
-                    case "token":
-                        rexCord.setBotToken(option);
-                        break;
-                    case "banned_commands":
-                        rexCord.setBotBannedCommands(option);
-                    case "prefix":
-                        rexCord.setBotPrefix(option);
-                        break;
-                    case "listen_channels":
-                        rexCord.setListenChannels(readListenChannels(option));
-                        break;
-                    case "giphy_key":
-                        rexCord.setGiphyAPIKey(option);
-                        break;
-                    default:
-                        break;
-                }
-            }
+    private void readFile() throws IOException {
+        Configuration configuration = XmlParser
+                .parseXml(RexCord.DEFAULT_CONFIG_PATH, Configuration.class);
+        if (configuration.isTokenSet()) {
+            rexCord.setBotToken(configuration.getToken());
+        } else if (configuration.isBannedCommandsSet()) {
+            rexCord.setBotBannedCommands(configuration.getBannedCommands());
+        } else if (configuration.isPrefixSet()) {
+            rexCord.setBotPrefix(configuration.getPrefix());
+        } else if (configuration.isListenChannelsSet()) {
+            rexCord.setListenChannels(configuration.getListenChannels());
+        } else if (configuration.isApiGiphyKeySet()) {
+            rexCord.setGiphyAPIKey(configuration.getApiGiphyKey());
         }
-
-        sc.close();
     }
 
     /**

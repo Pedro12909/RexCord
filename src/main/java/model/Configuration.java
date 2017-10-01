@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by thales minussi on 28/09/17.
@@ -20,9 +20,19 @@ public final class Configuration {
     private String prefix;
 
     /**
-     * collection of banned commands
+     * banned commands
      */
-    private Collection<String> bannedCommands;
+    private String bannedCommands;
+
+    /**
+     * listen channels
+     */
+    private List<Long> listenChannels;
+
+    /**
+     * giphy api key
+     */
+    private String apiGiphyKey;
 
     /**
      * @return token
@@ -55,17 +65,87 @@ public final class Configuration {
     }
 
     /**
-     * @return collection of bannedCommands
+     * @return bannedCommands
      */
-    public Collection<String> getBannedCommands() {
+    public String getBannedCommands() {
         return bannedCommands;
     }
 
     /**
-     * @param bannedCommands
-     * sets bannedCommands
+     * sets banned comments
+     * @param bannedCommands the banned commands
      */
-    public void setBannedCommands(Collection<String> bannedCommands) {
+    public void setBannedCommands(String bannedCommands) {
         this.bannedCommands = bannedCommands;
+    }
+
+    /**
+     * @return listenChannels
+     */
+    public List<Long> getListenChannels() {
+        return listenChannels;
+    }
+
+    /**
+     * @param listenChannels
+     * sets listenChannels
+     */
+    public void setListenChannels(List<Long> listenChannels) {
+        this.listenChannels = listenChannels;
+    }
+
+    /**
+     * @return apiGiphyKey
+     */
+    public String getApiGiphyKey() {
+        return apiGiphyKey;
+    }
+
+    /**
+     * @param apiGiphyKey
+     * sets giphyApiKey
+     */
+    public void setApiGiphyKey(String apiGiphyKey) {
+        this.apiGiphyKey = apiGiphyKey;
+    }
+
+    /**
+     * verifies if the token has already been set
+     * @return true if the token has been set, false otherwise
+     */
+    public boolean isTokenSet() {
+        return this.token != null && !this.token.isEmpty();
+    }
+
+    /**
+     * verifies if the prefix has already been set
+     * @return true if the prefix has been set, false otherwise
+     */
+    public boolean isPrefixSet() {
+        return this.prefix != null && !this.prefix.isEmpty();
+    }
+
+    /**
+     * verifies if bannedCommands has already been set
+     * @return true if bannedCommands has been set, false otherwise
+     */
+    public boolean isBannedCommandsSet() {
+        return this.bannedCommands != null && !this.bannedCommands.isEmpty();
+    }
+
+    /**
+     * verifies if giphyApiKey has already been set
+     * @return true if giphyApiKey has been set, false otherwise
+     */
+    public boolean isApiGiphyKeySet() {
+        return this.apiGiphyKey != null && !this.apiGiphyKey.isEmpty();
+    }
+
+    /**
+     * verifies if listenChannels have already been set
+     * @return true if listenChannels has been set, false otherwise
+     */
+    public boolean isListenChannelsSet() {
+        return this.listenChannels != null && !this.listenChannels.isEmpty();
     }
 }

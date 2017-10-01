@@ -1,9 +1,0 @@
-<config>
-    <token>123</token>
-    <prefix>123</prefix>
-    <bannedCommands>
-        <bannedCommand>DEFAULT</bannedCommand>
-        <bannedCommand>SPEAK</bannedCommand>
-        <bannedCommand>MUTE</bannedCommand>
-    </bannedCommands>
-</config>

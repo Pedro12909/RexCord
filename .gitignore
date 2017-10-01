@@ -2,5 +2,5 @@ target/
 .idea/
 modules/
 *.iml
-config/config.cfg
+config/example_config.xml
 config/permissions.xml
