@@ -54,26 +54,4 @@ public class ConfigReader {
         }
     }
 
-    /**
-     * Reads list of channels that RexCord should listen from config
-     * @param option channels defined in config
-     * @return List of channel IDs
-     */
-    private List<Long> readListenChannels(String option) {
-        List<Long> channels = new ArrayList<>();
-
-        String[] channelIDs = option.split(",");
-
-        for (String id : channelIDs) {
-            long longID = Long.parseLong(id.trim());
-
-            try {
-                channels.add(longID);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return channels;
-    }
 }
