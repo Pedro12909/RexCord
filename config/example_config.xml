@@ -1,0 +1,11 @@
+<config>
+    <token></token>
+    <prefix></prefix>
+    <bannedCommands></bannedCommands>
+    <listenChannels>
+        <listenChannel></listenChannel>
+        <listenChannel></listenChannel>
+        <listenChannel></listenChannel>
+    </listenChannels>
+    <apiGiphyKey></apiGiphyKey>
+</config>
