@@ -41,13 +41,17 @@ public class ConfigReader {
                 .parseXml(RexCord.DEFAULT_CONFIG_PATH, Configuration.class);
         if (configuration.isTokenSet()) {
             rexCord.setBotToken(configuration.getToken());
-        } else if (configuration.isBannedCommandsSet()) {
+        }
+        if (configuration.isBannedCommandsSet()) {
             rexCord.setBotBannedCommands(configuration.getBannedCommands());
-        } else if (configuration.isPrefixSet()) {
+        }
+        if (configuration.isPrefixSet()) {
             rexCord.setBotPrefix(configuration.getPrefix());
-        } else if (configuration.isListenChannelsSet()) {
+        }
+        if (configuration.isListenChannelsSet()) {
             rexCord.setListenChannels(configuration.getListenChannels());
-        } else if (configuration.isApiGiphyKeySet()) {
+        }
+        if (configuration.isApiGiphyKeySet()) {
             rexCord.setGiphyAPIKey(configuration.getApiGiphyKey());
         }
     }
