@@ -2,6 +2,7 @@ package main;
 
 import commands.BannedCommands;
 import commands.CommandHandler;
+import commands.messages.EmbeddedMessage;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.handle.impl.events.guild.channel.message.
@@ -10,7 +11,9 @@ import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.handle.obj.IVoiceChannel;
 import sx.blah.discord.util.DiscordException;
+import sx.blah.discord.util.EmbedBuilder;
 import sx.blah.discord.util.MessageBuilder;
+import sx.blah.discord.util.RequestBuffer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -310,5 +313,21 @@ public final class RexCord {
             //Stills needs to be treated
             //This exception occurs when the content is blank (no content)
         }
+    }
+
+    /**
+     * Sends an embedded message to a certain user
+     *
+     * @param channel text channel
+     * @param embeddedMessage encapsulated embedded message
+     */
+    public void sendEmbeddedMessage(IChannel channel,
+                                    EmbeddedMessage embeddedMessage) {
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.appendField(embeddedMessage.getTitle(),
+                embeddedMessage.getMessage(), false);
+
+        RequestBuffer.request(() -> channel.sendMessage(builder.build()));
     }
 }

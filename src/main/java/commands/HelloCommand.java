@@ -1,5 +1,6 @@
 package commands;
 
+import commands.messages.EmbeddedMessage;
 import main.RexCord;
 import sx.blah.discord.handle.impl.events
         .guild.channel.message.MessageReceivedEvent;
@@ -56,8 +57,11 @@ public class HelloCommand implements BotCommand {
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        String messageToSend = "Hello, " + event.getAuthor().mention();
+        EmbeddedMessage embeddedMessage =
+                // title cannot be null/empty
+                new EmbeddedMessage("new message from bot",
+                        "Hello, " + event.getAuthor().mention());
 
-        rexCord.sendMessage(event.getChannel(), messageToSend);
+        rexCord.sendEmbeddedMessage(event.getChannel(), embeddedMessage);
     }
 }
