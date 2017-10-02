@@ -15,7 +15,7 @@ public class XmlParserTest {
 
     @Test
     public void parseXmlShouldReturnConfiguration() throws IOException {
-        Configuration configuration = XmlParser.parseXml("config/example_config.xml", Configuration.class);
+        Configuration configuration = XmlParser.parseXml("config/config.xml", Configuration.class);
         assertEquals("123", configuration.getPrefix());
         assertEquals("123", configuration.getToken());
         assertEquals("DEFAULT", configuration.getBannedCommands());
