@@ -82,5 +82,6 @@ public class CommandHandler {
                 cmd.runCommand(event, String.join(" ", args));
             }
         }
+        rexCord.deleteMessageAfterTime(event.getMessage());
     }
 }

@@ -23,6 +23,11 @@ public class ConfigReader {
             "Error while loading config.cfg\n[Line %d] Missing %s definition";
 
     /**
+     * Used to multiply to a minute
+     */
+    private static final int MULTIPLY_TO_MINUTE = 60000;
+
+    /**
      * Creates an instance of ConfigReader
      * @param rexCord main instance of RexCord
      * @throws FileNotFoundException in case doesnt find config file
@@ -68,6 +73,15 @@ public class ConfigReader {
                         rexCord.setBotBannedCommands(option);
                     case "prefix":
                         rexCord.setBotPrefix(option);
+                        break;
+                    case "delete_time":
+                        int deleteTime = Integer.parseInt(option);
+                        if(deleteTime <= 0) {
+                            rexCord.setDeleteTime(0);
+                        } else {
+                            deleteTime *= MULTIPLY_TO_MINUTE;
+                            rexCord.setDeleteTime(deleteTime);
+                        }
                         break;
                     default:
                         break;
