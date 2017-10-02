@@ -74,7 +74,7 @@ public final class RexCord {
      * Configuration's File Path
      */
     public static final String DEFAULT_CONFIG_PATH
-            = System.getProperty("user.dir") + "/config/config.cfg";
+            = System.getProperty("user.dir") + "/config/config.xml";
 
     /**
      * Config missing Error Message
