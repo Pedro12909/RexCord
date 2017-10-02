@@ -2,7 +2,7 @@ package main;
 
 import commands.BannedCommands;
 import commands.CommandHandler;
-import commands.messages.EmbeddedMessage;
+import commands.EmbeddedMessage;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.handle.impl.events.guild.channel.message.
@@ -327,6 +327,8 @@ public final class RexCord {
 
         builder.appendField(embeddedMessage.getTitle(),
                 embeddedMessage.getMessage(), false);
+
+        builder.withImage(embeddedMessage.getImage());
 
         RequestBuffer.request(() -> channel.sendMessage(builder.build()));
     }

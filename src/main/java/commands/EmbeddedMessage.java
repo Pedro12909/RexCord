@@ -1,4 +1,4 @@
-package commands.messages;
+package commands;
 
 /**
  * encapsulating for embedded message
@@ -15,13 +15,20 @@ public class EmbeddedMessage {
     private String message;
 
     /**
+     * url to image
+     */
+    private String image;
+
+    /**
      * Creates an embedded message
      * @param title title of the message
      * @param message message content
+     * @param image url to image
      */
-    public EmbeddedMessage(String title, String message) {
+    public EmbeddedMessage(String title, String message, String image) {
         this.title = title;
         this.message = message;
+        this.image = image;
     }
 
     /**
@@ -38,6 +45,14 @@ public class EmbeddedMessage {
      */
     public final String getMessage() {
         return message;
+    }
+
+    /**
+     * gets an image url
+     * @return image
+     */
+    public final String getImage() {
+        return image;
     }
 
 }

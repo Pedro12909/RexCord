@@ -75,7 +75,8 @@ public class AboutCommand implements BotCommand {
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        rexCord.sendMessage(event.getChannel(), "RexCord is a Discord Bot "
+
+        String message = "RexCord is a Discord Bot "
                 + "written in java, that uses the popular interface "
                 + DiscordMarkdown.boldItalic("Discord4J") + " developed by "
                 + DiscordMarkdown.bold("austinv11") + "."
@@ -85,6 +86,11 @@ public class AboutCommand implements BotCommand {
                 + "\nDiscord4J on GitHub: " + DISCORD4J_GITHUB_REPOSITORY
                 + "\nAustinv11 on GitHub: " + AUSTINV11_GITHUB_REPOSITORY
                 + "\nJust Some Bots Music Bot on GitHub: "
-                + JUST_SOME_MUSIC_BOT_REPOSITORY);
+                + JUST_SOME_MUSIC_BOT_REPOSITORY;
+
+        EmbeddedMessage embeddedMessage =
+                new EmbeddedMessage("About", message, "");
+
+        rexCord.sendEmbeddedMessage(event.getChannel(), embeddedMessage);
     }
 }
