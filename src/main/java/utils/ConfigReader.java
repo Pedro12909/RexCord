@@ -4,8 +4,6 @@ import main.RexCord;
 import model.Configuration;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Reads config file
