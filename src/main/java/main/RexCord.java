@@ -2,6 +2,7 @@ package main;
 
 import commands.BannedCommands;
 import commands.CommandHandler;
+import model.Permissions.PermissionConfiguration;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.handle.impl.events.guild.channel.message.
@@ -34,6 +35,11 @@ public final class RexCord {
      * Instance of Command Handler
      */
     private CommandHandler commandHandler;
+
+    /**
+     * Instance of the permissions configuration
+     */
+    private PermissionConfiguration permissions;
 
     /**
      * List of Text Channels that RexCord listens to
@@ -77,6 +83,12 @@ public final class RexCord {
             = System.getProperty("user.dir") + "/config/config.xml";
 
     /**
+     * Permissions File Path
+     */
+    public static final String DEFAULT_PERMISSIONS_PATH
+            = System.getProperty("user.dir") + "/config/permissions.xml";
+
+    /**
      * Config missing Error Message
      */
     public static final String CONFIG_NOT_FOUND_ERROR
@@ -102,6 +114,12 @@ public final class RexCord {
      */
     public static final String TERMINATING_MESSAGE
             = "RexCord: Terminating RexCord...";
+
+    /**
+     * RexCord permissions error message
+     */
+    public static final String PERMISSION_ERROR
+            = "You do not have permission to do that";
 
     /**
      * Prevents class from being instantiated
@@ -240,6 +258,22 @@ public final class RexCord {
      */
     public void setStartTime(long startTime) {
         this.startTime = startTime;
+    }
+
+    /**
+     * Get main instance of the PermissionConfiguration
+     * @return main instance of PermissionConfiguration
+     */
+    public PermissionConfiguration getPermissions() {
+        return permissions;
+    }
+
+    /**
+     * Set main instance of the PermissionConfiguration
+     * @param configuration main instance of PermissionConfiguration
+     */
+    public void setPermissions(PermissionConfiguration configuration) {
+        this.permissions = configuration;
     }
 
     /**
