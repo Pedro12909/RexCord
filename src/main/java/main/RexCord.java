@@ -6,11 +6,11 @@ import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.handle.impl.events.guild.channel.message.
         MessageReceivedEvent;
-import sx.blah.discord.handle.obj.IChannel;
-import sx.blah.discord.handle.obj.IUser;
-import sx.blah.discord.handle.obj.IVoiceChannel;
+import sx.blah.discord.handle.obj.*;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.MessageBuilder;
+
+import java.util.EnumSet;
 
 /**
  * Contains important methods and variables for the Bot
@@ -46,6 +46,11 @@ public final class RexCord {
      * Bot's banned commands
      */
     private String botBannedCommands;
+
+    /**
+     * How long it will take for the bot to delete messages
+     */
+    private int deleteTime;
 
     /**
      * Only messages starting with this prefix will be handled
@@ -89,6 +94,12 @@ public final class RexCord {
      */
     public static final String TERMINATING_MESSAGE
             = "RexCord: Terminating RexCord...";
+
+    /**
+     * Bot doesn't have access to a Permission message
+     */
+    private static final String BOT_NO_ACCESS =
+            "Bot doesn't have access to ";
 
     /**
      * Prevents class from being instantiated
@@ -197,6 +208,16 @@ public final class RexCord {
     }
 
     /**
+     * Sets the delete time, in ms
+     *
+     * @param deleteTime delete time, in ms
+     */
+
+    public void setDeleteTime(int deleteTime) {
+        this.deleteTime = deleteTime;
+    }
+
+    /**
      * Sends a text message
      *
      * @param channel text channel
@@ -204,10 +225,37 @@ public final class RexCord {
      */
     public void sendMessage(IChannel channel, String message) {
         try {
-            channel.sendMessage(message);
+            IMessage sentMessage = channel.sendMessage(message);
+            deleteMessageAfterTime(sentMessage);
         } catch (DiscordException de) {
             System.out.println("RexCord: Error sending message. Got error:");
             de.printStackTrace();
+        }
+    }
+
+    /**
+     * Deletes a message after delete_time
+     *
+     * @param message message
+     */
+    public void deleteMessageAfterTime(IMessage message) {
+        IGuild guild = message.getGuild();
+        IUser user = client.getOurUser();
+        EnumSet<Permissions> userPerms = user.getPermissionsForGuild(guild);
+        boolean hasPermission = userPerms.contains(Permissions.MANAGE_MESSAGES);
+        if (deleteTime != 0 && hasPermission) {
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            message.delete();
+                        }
+                    },
+                    deleteTime
+            );
+        } else if (!hasPermission && deleteTime != 0) {
+            System.err.println("RexCord: " + BOT_NO_ACCESS + " MANAGE_MESSAGES");
+            setDeleteTime(0);
         }
     }
 

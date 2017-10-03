@@ -80,6 +80,7 @@ public class CommandHandler {
                     && !rexCord.getBannedCommands()
                     .isCommandBanned(commandString)) {
                 cmd.runCommand(event, String.join(" ", args));
+                rexCord.deleteMessageAfterTime(event.getMessage());
             }
         }
     }
