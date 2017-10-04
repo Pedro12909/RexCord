@@ -61,7 +61,7 @@ public class ConfigReader {
         }
         if (configuration.isDeleteTimeSet()) {
             int deleteTime = configuration.getDeleteTime();
-            if(deleteTime <= 0) {
+            if (deleteTime <= 0) {
                 rexCord.setDeleteTime(0);
             } else {
                 deleteTime *= MULTIPLY_TO_MINUTE;

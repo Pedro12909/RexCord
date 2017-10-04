@@ -67,7 +67,7 @@ public final class RexCord {
     /**
      * How long it takes for the bot to delete messages
      */
-    private Integer delete_time;
+    private Integer deleteTime;
 
     /**
      * Only messages starting with this prefix will be handled
@@ -261,19 +261,19 @@ public final class RexCord {
     /**
      * Gets delete time, in ms
      *
-     * @return
+     * @return delete time, in ms
      */
     public Integer getDeleteTime() {
-        return delete_time;
+        return deleteTime;
     }
 
     /**
      * Sets delete time, in ms
      *
-     * @param delete_time
+     * @param deleteTime deleteTime
      */
-    public void setDeleteTime(Integer delete_time) {
-        this.delete_time = delete_time;
+    public void setDeleteTime(Integer deleteTime) {
+        this.deleteTime = deleteTime;
     }
 
     /**
@@ -298,12 +298,12 @@ public final class RexCord {
      * @param message message
      */
     public void deleteMessageAfterTime(IMessage message) {
-        Integer delete_time = getDeleteTime();
+        Integer deleteTime = getDeleteTime();
         IGuild guild = message.getGuild();
         IUser user = client.getOurUser();
         EnumSet<Permissions> userPerms = user.getPermissionsForGuild(guild);
         boolean hasPermission = userPerms.contains(Permissions.MANAGE_MESSAGES);
-        if ((delete_time != 0 && delete_time != null) && hasPermission) {
+        if ((deleteTime != 0 && deleteTime != null) && hasPermission) {
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
@@ -311,9 +311,9 @@ public final class RexCord {
                             message.delete();
                         }
                     },
-                    delete_time
+                    deleteTime
             );
-        } else if (!hasPermission && delete_time != 0) {
+        } else if (!hasPermission && deleteTime != 0) {
             System.err.println("RexCord: "
                     + BOT_NO_ACCESS
                     + " MANAGE_MESSAGES");
