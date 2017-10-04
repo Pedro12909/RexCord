@@ -23,6 +23,7 @@ public class XmlParserTest {
         assertTrue(configuration.getListenChannels().contains(60L));
         assertTrue(configuration.getListenChannels().contains(70L));
         assertEquals("33a79488-c78c-448b-9c67-5723879e055e", configuration.getApiGiphyKey());
+        assertEquals(5,configuration.getDeleteTime());
     }
 
 }

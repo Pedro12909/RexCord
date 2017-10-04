@@ -35,6 +35,11 @@ public final class Configuration {
     private String apiGiphyKey;
 
     /**
+     * delete time
+     */
+    private Integer deleteTime;
+
+    /**
      * @return token
      */
     public String getToken() {
@@ -110,6 +115,21 @@ public final class Configuration {
     }
 
     /**
+     * @return delete time
+     */
+    public int getDeleteTime() {
+        return deleteTime;
+    }
+
+    /**
+     * @param deletetime
+     * sets deletetime
+     */
+    public void setDeleteTime(int deletetime) {
+        this.deleteTime = deletetime;
+    }
+
+    /**
      * verifies if the token has already been set
      * @return true if the token has been set, false otherwise
      */
@@ -147,5 +167,13 @@ public final class Configuration {
      */
     public boolean isListenChannelsSet() {
         return this.listenChannels != null && !this.listenChannels.isEmpty();
+    }
+
+    /**
+     * verifies if delete_time has already been set
+     * @return true if delete_time has been set, false otherwise
+     */
+    public boolean isDeleteTimeSet() {
+        return this.deleteTime != null;
     }
 }

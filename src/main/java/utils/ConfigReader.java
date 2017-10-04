@@ -22,6 +22,11 @@ public class ConfigReader {
             "Error while loading config.cfg\n[Line %d] Missing %s definition";
 
     /**
+     * Used to multiply to a minute
+     */
+    private static final int MULTIPLY_TO_MINUTE = 60000;
+
+    /**
      * Creates an instance of ConfigReader
      * @param rexCord main instance of RexCord
      * @throws IOException in case doesnt find config file
@@ -53,6 +58,15 @@ public class ConfigReader {
         }
         if (configuration.isApiGiphyKeySet()) {
             rexCord.setGiphyAPIKey(configuration.getApiGiphyKey());
+        }
+        if (configuration.isDeleteTimeSet()) {
+            int deleteTime = configuration.getDeleteTime();
+            if(deleteTime <= 0) {
+                rexCord.setDeleteTime(0);
+            } else {
+                deleteTime *= MULTIPLY_TO_MINUTE;
+                rexCord.setDeleteTime(deleteTime);
+            }
         }
     }
 
