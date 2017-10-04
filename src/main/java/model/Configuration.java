@@ -125,7 +125,7 @@ public final class Configuration {
      * @param deletetime
      * sets deletetime
      */
-    public void setDeleteTime(int deletetime) {
+    public void setDeleteTime(Integer deletetime) {
         this.deleteTime = deletetime;
     }
 
@@ -174,6 +174,6 @@ public final class Configuration {
      * @return true if delete_time has been set, false otherwise
      */
     public boolean isDeleteTimeSet() {
-        return this.deleteTime != null;
+        return this.deleteTime != null && !this.deleteTime.toString().isEmpty();
     }
 }

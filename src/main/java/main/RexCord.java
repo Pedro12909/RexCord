@@ -67,7 +67,7 @@ public final class RexCord {
     /**
      * How long it takes for the bot to delete messages
      */
-    private Integer delete_time = 0;
+    private Integer delete_time;
 
     /**
      * Only messages starting with this prefix will be handled
@@ -303,7 +303,7 @@ public final class RexCord {
         IUser user = client.getOurUser();
         EnumSet<Permissions> userPerms = user.getPermissionsForGuild(guild);
         boolean hasPermission = userPerms.contains(Permissions.MANAGE_MESSAGES);
-        if (delete_time != 0 && hasPermission) {
+        if ((delete_time != 0 && delete_time != null) && hasPermission) {
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override

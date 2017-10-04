@@ -113,19 +113,13 @@ public class ConfigurationTest {
 
     @Test
     public void isDeleteTimeSet_ShouldReturn_True() throws Exception {
-        this.configuration.setDeleteTime(5);
+        this.configuration.setDeleteTime(1);
         assertTrue(this.configuration.isDeleteTimeSet());
     }
 
     @Test
-    public void isDeleteTimeSet_ShouldReturn_False_IfDeleteTimeIsEmpty() throws Exception {
-        this.configuration.setDeleteTime(0);
-        assertFalse(this.configuration.isDeleteTimeSet());
-    }
-
-    @Test
     public void isDeleteTimeSet_ShouldReturn_False_IfDeleteTimeIsNull() throws Exception {
-        this.configuration.setDeleteTime(0);
+        this.configuration.setDeleteTime(null);
         assertFalse(this.configuration.isDeleteTimeSet());
     }
 }
