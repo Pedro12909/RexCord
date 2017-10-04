@@ -71,13 +71,17 @@ public class InfoCommand implements BotCommand {
         List<BotCommand> commands =
                 rexCord.getCommandHandler()
                 .getAvailableCommands();
-        for (int i = 0; i < commands.size(); i++) {
+        for (BotCommand command : commands) {
             commandInformation += "\n"
-                    + DiscordMarkdown.bold(commands.get(i).getCommandName())
+                    + DiscordMarkdown.bold(command.getCommandName())
                     + " == "
-                    + DiscordMarkdown.bold(commands.get(i)
+                    + DiscordMarkdown.bold(command
                     .getCommandDescription());
         }
-        rexCord.sendMessage(event.getChannel(), commandInformation);
+
+        EmbeddedMessage embeddedMessage =
+                new EmbeddedMessage("Commands", commandInformation, "");
+
+        rexCord.sendEmbeddedMessage(event.getChannel(), embeddedMessage);
     }
 }
