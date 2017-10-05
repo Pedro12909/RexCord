@@ -111,4 +111,15 @@ public class ConfigurationTest {
         assertFalse(this.configuration.isListenChannelsSet());
     }
 
+    @Test
+    public void isDeleteTimeSet_ShouldReturn_True() throws Exception {
+        this.configuration.setDeleteTime(1);
+        assertTrue(this.configuration.isDeleteTimeSet());
+    }
+
+    @Test
+    public void isDeleteTimeSet_ShouldReturn_False_IfDeleteTimeIsNull() throws Exception {
+        this.configuration.setDeleteTime(null);
+        assertFalse(this.configuration.isDeleteTimeSet());
+    }
 }

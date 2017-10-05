@@ -8,4 +8,5 @@
         <listenChannel></listenChannel>
     </listenChannels>
     <apiGiphyKey></apiGiphyKey>
+    <deleteTime></deleteTime>
 </config>

@@ -93,6 +93,7 @@ public class CommandHandler {
                     && textChannelIsSetAsListen(event.getChannel())) {
                 try {
                     cmd.runCommand(event, String.join(" ", args));
+                    rexCord.deleteMessageAfterTime(event.getMessage());
                 } catch (MissingPermissionsException e) {
                     event.getAuthor()
                             .getOrCreatePMChannel()
