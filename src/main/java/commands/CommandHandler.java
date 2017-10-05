@@ -1,5 +1,10 @@
 package commands;
 
+import commands.music.HereCommand;
+import commands.music.LeaveCommand;
+import commands.music.PlayCommand;
+import commands.music.PauseCommand;
+import commands.music.SkipCommand;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message
         .MessageReceivedEvent;
@@ -48,7 +53,12 @@ public class CommandHandler {
                 new InfoCommand(rexCord),
                 new RequestCommand(rexCord),
                 new JokeCommand(rexCord),
-                new GifCommand(rexCord)
+                new GifCommand(rexCord),
+                new HereCommand(rexCord),
+                new LeaveCommand(rexCord),
+                new PlayCommand(rexCord),
+                new PauseCommand(rexCord),
+                new SkipCommand(rexCord)
         ));
     }
 
