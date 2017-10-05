@@ -66,8 +66,13 @@ public class GifCommand implements BotCommand {
 
         try {
             SearchRandom feed = giphy.searchRandom(args);
-            rexCord.sendMessage(event.getChannel(),
+            EmbeddedMessage embeddedMessage =
+                    new EmbeddedMessage(feed.getData().getImageUrl(),
+                    feed.getData().getId(),
                     feed.getData().getImageOriginalUrl());
+            rexCord.sendEmbeddedMessage(event.getChannel(),
+                    embeddedMessage);
+
         } catch (GiphyException e) {
             rexCord.sendMessage(event.getChannel(),
                     "An error ocurred while processing that gif.\n"
