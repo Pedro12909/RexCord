@@ -1,11 +1,11 @@
 <config>
-    <token></token>
-    <prefix></prefix>
-    <bannedCommands></bannedCommands>
+    <token>NaTzNTAwSTY40TAwPFC5MzM4.DbcLvA.eU8UmqGM2NBKIGYti3ZpxCQLvDc</token>
+    <prefix>//</prefix>
+    <bannedCommands>DEFAULT</bannedCommands>
     <listenChannels>
-        <listenChannel></listenChannel>
-        <listenChannel></listenChannel>
-        <listenChannel></listenChannel>
+        <listenChannel>284687912687132846</listenChannel>
+        <listenChannel>549871324898716543</listenChannel>
+        <listenChannel>135798126574567981</listenChannel>
     </listenChannels>
-    <apiGiphyKey></apiGiphyKey>
+    <apiGiphyKey>33a79488-c78c-448b-9c67-5723879e055e</apiGiphyKey>
 </config>
