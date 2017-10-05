@@ -15,13 +15,13 @@ public class XmlParserTest {
 
     @Test
     public void parseXmlShouldReturnConfiguration() throws IOException {
-        Configuration configuration = XmlParser.parseXml("config/config.xml", Configuration.class);
-        assertEquals("123", configuration.getPrefix());
-        assertEquals("123", configuration.getToken());
+        Configuration configuration = XmlParser.parseXml("config/example_config.xml", Configuration.class);
+        assertEquals("//", configuration.getPrefix());
+        assertEquals("NaTzNTAwSTY40TAwPFC5MzM4.DbcLvA.eU8UmqGM2NBKIGYti3ZpxCQLvDc", configuration.getToken());
         assertEquals("DEFAULT", configuration.getBannedCommands());
-        assertTrue(configuration.getListenChannels().contains(50L));
-        assertTrue(configuration.getListenChannels().contains(60L));
-        assertTrue(configuration.getListenChannels().contains(70L));
+        assertTrue(configuration.getListenChannels().contains(284687912687132846L));
+        assertTrue(configuration.getListenChannels().contains(549871324898716543L));
+        assertTrue(configuration.getListenChannels().contains(135798126574567981L));
         assertEquals("33a79488-c78c-448b-9c67-5723879e055e", configuration.getApiGiphyKey());
     }
 
