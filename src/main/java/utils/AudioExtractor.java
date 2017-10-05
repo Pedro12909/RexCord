@@ -91,7 +91,7 @@ public final class AudioExtractor {
         while ((line = reader.readLine()) != null) {
             response.append(line);
         }
-
+        reader.close();
         return response.toString();
     }
 
