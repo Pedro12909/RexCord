@@ -58,7 +58,8 @@ public class CommandHandler {
                 new LeaveCommand(rexCord),
                 new PlayCommand(rexCord),
                 new PauseCommand(rexCord),
-                new SkipCommand(rexCord)
+                new SkipCommand(rexCord),
+                new RemindCommand(rexCord)
         ));
     }
 
@@ -102,7 +103,13 @@ public class CommandHandler {
                     .isCommandBanned(commandString)
                     && textChannelIsSetAsListen(event.getChannel())) {
                 try {
-                    cmd.runCommand(event, String.join(" ", args));
+                    if (rexCord.getPermissions().
+                                isAllowed(event, commandString)) {
+                        cmd.runCommand(event, String.join(" ", args));
+                    } else {
+                        rexCord.sendMessage(event.getChannel(),
+                                                rexCord.PERMISSION_ERROR);
+                    }
                 } catch (MissingPermissionsException e) {
                     event.getAuthor()
                             .getOrCreatePMChannel()
