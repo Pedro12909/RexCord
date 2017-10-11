@@ -1,0 +1,39 @@
+<permissions>
+    <roles>
+        <role>
+            <name>role1</name>
+            <!--Users who belong to the role but are banned from using the commands associated with the role-->
+            <bannedUsers>
+                <user>1023840128340928</user>
+                <user>1234123421349818</user>
+            </bannedUsers>
+            <commands>
+                <!--use * to signify access to all commands-->
+                <command>*</command>
+            </commands>
+        </role>
+
+        <role>
+            <name>role2</name>
+            <bannedUsers>
+                <user>8979872732342343</user>
+            </bannedUsers>
+            <commands>
+                <command>gif</command>
+                <command>joke</command>
+            </commands>
+        </role>
+
+        <!--This is the default group-->
+        <role>
+            <name>@everyone</name>
+            <commands>
+                <command>greet</command>
+                <command>math</command>
+                <command>uptime</command>
+                <command>info</command>
+            </commands>
+        </role>
+
+    </roles>
+</permissions>
