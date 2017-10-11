@@ -137,7 +137,7 @@ public final class RexCord {
      */
     public static final String USER_AGENT
             = "java:rexcord:v1.0";
-  
+
     /**
      * RexCord permissions error message
      */
