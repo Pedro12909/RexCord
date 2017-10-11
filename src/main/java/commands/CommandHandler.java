@@ -93,7 +93,13 @@ public class CommandHandler {
                     .isCommandBanned(commandString)
                     && textChannelIsSetAsListen(event.getChannel())) {
                 try {
-                    cmd.runCommand(event, String.join(" ", args));
+                    if (rexCord.getPermissions().
+                                isAllowed(event, commandString)) {
+                        cmd.runCommand(event, String.join(" ", args));
+                    } else {
+                        rexCord.sendMessage(event.getChannel(),
+                                                rexCord.PERMISSION_ERROR);
+                    }
                 } catch (MissingPermissionsException e) {
                     event.getAuthor()
                             .getOrCreatePMChannel()
