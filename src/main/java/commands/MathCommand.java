@@ -28,12 +28,6 @@ public class MathCommand implements BotCommand {
             = "Calculates a given mathematical operation";
 
     /**
-     * A message header!
-     */
-    private static final String MESSAGE_HEADER =
-            "That looks easy! :nerd: \n";
-
-    /**
      * Creates an instance of Math Command class
      * @param rexCord main instance of rexCord
      */
@@ -70,8 +64,7 @@ public class MathCommand implements BotCommand {
         // FIXME due to args being a vector,
         // it is only selecting the first argument
         rexCord.sendMessage(event.getChannel(),
-                MESSAGE_HEADER
-                        + MathHandler.handleOperation(args));
+                MathHandler.handleOperation(args));
     }
 
 }

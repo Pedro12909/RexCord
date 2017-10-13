@@ -18,6 +18,12 @@ public class MathHandler {
     private static final String INVALID_EXPRESSION = "Expression is invalid!";
 
     /**
+     * A message header!
+     */
+    private static final String MESSAGE_HEADER =
+            "That looks easy! :nerd: \n";
+
+    /**
      * Handles Expression Eval Math Operations
      *
      * @param expression String with the expression that the user typed
@@ -25,8 +31,8 @@ public class MathHandler {
      */
     public static String handleOperation(String expression) {
         try {
-            return expression + "=" + new Expression(expression)
-                    .eval().toEngineeringString();
+            return MESSAGE_HEADER + expression + "="
+                    + new Expression(expression).eval().toEngineeringString();
         } catch (Expression.ExpressionException e) {
             return INVALID_EXPRESSION + "\nExpression:" + expression;
         } catch (NumberFormatException e) {
