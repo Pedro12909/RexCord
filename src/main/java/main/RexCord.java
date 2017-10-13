@@ -126,6 +126,19 @@ public final class RexCord {
             = "RexCord: Terminating RexCord...";
 
     /**
+     * Error given when music command is invoked but
+     * RexCord is not in a voice channel
+     */
+    public static final String NOT_IN_VOICE_CHANNEL
+            = "Not in a voice channel. Use the here command";
+
+    /**
+     * RexCord's user agent when making connections to HTTP servers
+     */
+    public static final String USER_AGENT
+            = "java:rexcord:v1.0";
+
+    /**
      * RexCord permissions error message
      */
     public static final String PERMISSION_ERROR

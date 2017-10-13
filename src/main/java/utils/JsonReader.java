@@ -1,5 +1,6 @@
 package utils;
 
+import main.RexCord;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,7 +51,7 @@ public class JsonReader {
     public static JSONObject readJsonFromUrl(String url)
             throws IOException, JSONException {
         URLConnection connection = new URL(url).openConnection();
-        connection.setRequestProperty("User-Agent", "java:rexcord:v1.0");
+        connection.setRequestProperty("User-Agent", RexCord.USER_AGENT);
 
         InputStream is = connection.getInputStream();
         try {
