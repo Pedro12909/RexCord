@@ -25,10 +25,10 @@ import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({RexCord.class, AudioPlayer.class})
-public class PauseCommandTest {
+public class SkipCommandTest {
 
     @InjectMocks
-    private PauseCommand command;
+    private SkipCommand command;
 
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     private RexCord rexCord;
@@ -68,7 +68,7 @@ public class PauseCommandTest {
     }
 
     @Test
-    public void playlistSize_less_than_one_then_rexCord_sendMessage_NotASongToPause() throws Exception {
+    public void playlistSize_less_than_one_then_rexCord_sendMessage_NothingToSkip() throws Exception {
 
         // arrange on setUp
 
@@ -76,16 +76,15 @@ public class PauseCommandTest {
         command.runCommand(mockEvent, "");
 
         // assert
-        verify(rexCord).sendMessage(mockIChannel, "There is not a song to pause.");
+        verify(rexCord).sendMessage(mockIChannel, "There is nothing to skip.");
     }
 
     @Test
-    public void playlistSize_more_than_zero_and_unpaused_then_rexCord_sendMessage_UnpausedSong() throws Exception {
+    public void playlistSize_more_than_zero_and_then_rexCord_sendMessage_SkippedSong() throws Exception {
 
         // arrange on setUp
         AudioPlayer mockAudioPlayer = mock(AudioPlayer.class);
         when(mockAudioPlayer.getPlaylistSize()).thenReturn(1);
-        when(mockAudioPlayer.isPaused()).thenReturn(false);
 
         PowerMockito.mockStatic(AudioPlayer.class);
         when(AudioPlayer.getAudioPlayerForGuild(mockEvent.getGuild())).thenReturn(mockAudioPlayer);
@@ -94,27 +93,8 @@ public class PauseCommandTest {
         command.runCommand(mockEvent, "");
 
         // assert
-        verify(mockAudioPlayer).togglePause();
-        verify(rexCord).sendMessage(mockIChannel, "Unpaused song.");
-    }
-
-    @Test
-    public void playlistSize_more_than_zero_and_paused_then_rexCord_sendMessage_PausedSong() throws Exception {
-
-        // arrange on setUp
-        AudioPlayer mockAudioPlayer = mock(AudioPlayer.class);
-        when(mockAudioPlayer.getPlaylistSize()).thenReturn(1);
-        when(mockAudioPlayer.isPaused()).thenReturn(true);
-
-        PowerMockito.mockStatic(AudioPlayer.class);
-        when(AudioPlayer.getAudioPlayerForGuild(mockEvent.getGuild())).thenReturn(mockAudioPlayer);
-
-        // act
-        command.runCommand(mockEvent, "");
-
-        // assert
-        verify(mockAudioPlayer).togglePause();
-        verify(rexCord).sendMessage(mockIChannel, "Paused song.");
+        verify(mockAudioPlayer).skip();
+        verify(rexCord).sendMessage(mockIChannel, "Skipped song.");
     }
 
 }
