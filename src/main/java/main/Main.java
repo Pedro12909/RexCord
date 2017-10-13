@@ -1,10 +1,11 @@
 package main;
 
 import commands.CommandHandler;
+import model.Permissions.PermissionConfiguration;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
 import utils.ConfigReader;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Main Class
@@ -16,8 +17,8 @@ public class Main {
      */
     private static final String CONFIG_NOT_FOUND_ERROR
             = "RexCord: Config file not found. "
-            + "Make sure it is created and located in "
-            + "the correct directory.";
+            + "Make sure config and permissions files are created "
+            + "and located in the correct directory.";
 
     /**
      * Default Error Message
@@ -51,9 +52,11 @@ public class Main {
         try {
             // Reads config file
             new ConfigReader(rexCord);
+            rexCord.setPermissions(PermissionConfiguration.
+                                            createInstance(rexCord));
 
             startClient(rexCord);
-        } catch (FileNotFoundException e) { // Config File doesnt exist
+        } catch (IOException e) { // Config File doesnt exist
             System.out.println(RexCord.ERROR_MESSAGE);
             System.out.println(RexCord.CONFIG_NOT_FOUND_ERROR);
             System.out.println(RexCord.TERMINATING_MESSAGE);

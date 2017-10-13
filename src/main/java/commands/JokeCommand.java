@@ -80,8 +80,8 @@ public class JokeCommand implements BotCommand {
         }
 
         try {
-            JSONObject json = JsonReader
-                    .readJsonFromUrl("https://reddit/r/" + sub);
+            String queryUrl = "https://www.reddit.com/r/" + sub + ".json";
+            JSONObject json = JsonReader.readJsonFromUrl(queryUrl);
             JSONArray children = json.getJSONObject("data")
                     .getJSONArray("children");
 
@@ -92,8 +92,12 @@ public class JokeCommand implements BotCommand {
                     .getJSONObject("data");
             String title = (String) childData.get("title");
             String selftext = (String) childData.get("selftext");
-            rexCord.sendMessage(event.getChannel(),
-                    title + "\n" + selftext);
+
+            EmbeddedMessage embeddedMessage =
+                    new EmbeddedMessage(title, selftext, "");
+
+            rexCord.sendEmbeddedMessage(event.getChannel(),
+                    embeddedMessage);
 
         } catch (IOException e) {
             rexCord.sendMessage(event.getChannel(),
