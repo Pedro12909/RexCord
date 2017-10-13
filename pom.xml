@@ -35,7 +35,7 @@
             <groupId>org.powermock</groupId>
             <artifactId>powermock-mockito-release-full</artifactId>
             <version>1.6.4</version>
-            <scope>test</scope>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>com.udojava</groupId>
