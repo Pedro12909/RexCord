@@ -62,6 +62,14 @@
             <artifactId>natty</artifactId>
             <version>0.11</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-mockito-release-full</artifactId>
+            <version>1.6.4</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
