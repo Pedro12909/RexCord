@@ -4,27 +4,42 @@ import main.RexCord;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
-import sx.blah.discord.handle.obj.*;
+import sx.blah.discord.handle.obj.IChannel;
+import sx.blah.discord.handle.obj.IMessage;
+import sx.blah.discord.handle.obj.IUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
 
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(value = {RexCord.class, CommandHandler.class})
 public class TestCommands {
 
+    @Mock
     private RexCord rexCord;
+
+    @Mock
     private MessageReceivedEvent event;
+
+    @Mock
     private IChannel channel;
+
+    @Mock
     private IMessage message;
 
     @Before
     public void setUp() {
-        this.rexCord = mock(RexCord.class);
-        this.event = mock(MessageReceivedEvent.class);
-        this.channel = mock(IChannel.class);
-        this.message = mock(IMessage.class);
+        MockitoAnnotations.initMocks(this);
         when(event.getChannel()).thenReturn(channel);
         when(channel.getName()).thenReturn("channel-test");
         when(event.getMessage()).thenReturn(message);
@@ -78,12 +93,12 @@ public class TestCommands {
     @Test
     public void testInfoCommand() {
 
-        CommandHandler commandHandler = mock(CommandHandler.class);
-
         List<BotCommand> commands = new ArrayList<>();
         commands.add(new InfoCommand(rexCord));
+        CommandHandler commandHandler = PowerMockito.mock(CommandHandler.class);
 
         when(commandHandler.getAvailableCommands()).thenReturn(commands);
+
         when(rexCord.getCommandHandler()).thenReturn(commandHandler);
 
         InfoCommand command = new InfoCommand(rexCord);

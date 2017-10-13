@@ -67,7 +67,7 @@ public class CommandHandler {
      * Returns all available commands
      * @return A List with all the available commands
      */
-    public List<BotCommand> getAvailableCommands() {
+    public final List<BotCommand> getAvailableCommands() {
         return availableCommands;
     }
 
