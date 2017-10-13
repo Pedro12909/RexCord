@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Contains important methods and variables for the Bot
  */
-public final class RexCord {
+public class RexCord {
 
     /**
      * Bot Client

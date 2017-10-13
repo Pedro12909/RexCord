@@ -80,7 +80,7 @@ public class RemindCommand implements BotCommand {
         try {
             //Do +1 as substring is on [start, end-1] interval
             String message = args.substring(messageStart + 1, messageEnd);
-            String dateQuery = args.substring(0, messageStart);
+            String dateQuery = args.substring(0, messageEnd);
 
             //Use Natty Date Parser
             Parser parser = new Parser();

@@ -55,6 +55,12 @@
             <artifactId>natty</artifactId>
             <version>0.11</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.10.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
