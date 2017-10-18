@@ -14,3 +14,7 @@ https://discordapp.com/api/oauth2/authorize?client_id=CLIENT_ID&scope=bot
 ``
 
 - Finally download the bot and follow our [Setup Guide](https://github.com/Pedro12909/RexCord/wiki#installing-rexcord)!
+
+
+### Contributing ###
+Feel like adding cool new interesting features for RexCord? Great! Create an issue and start working! Our Wiki and CONTRIBUTING.md are really good resources created by the community explaining the process of developing RexCord
