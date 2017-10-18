@@ -29,3 +29,5 @@ Do you feel like helping RexCord development? Did you found any bug that you wou
 5. RexCord is being developed by a non-professional team. We are software engineering students and as such, our code may not be optimal. Feel free to post your suggestions on our Issues page. We are always striving to improve and learn!
 
 6. Feel free to show up at our Discord for help.
+
+7. Check out [this guide](https://github.com/Pedro12909/RexCord/wiki/Basic-Rundown-of-Rexcord's-Structure) created by EthanTheMaster and get to know a little bit more how RexCord is structured
