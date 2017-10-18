@@ -17,4 +17,5 @@ https://discordapp.com/api/oauth2/authorize?client_id=CLIENT_ID&scope=bot
 
 
 ### Contributing ###
-Feel like adding cool new interesting features for RexCord? Great! Create an issue and start working! Our Wiki and CONTRIBUTING.md are really good resources created by the community explaining the process of developing RexCord
+
+Feel like adding cool new interesting features for RexCord? Great! Create an issue and start working! Both our [Wiki](https://github.com/Pedro12909/RexCord/wiki/Basic-Rundown-of-Rexcord's-Structure) and [CONTRIBUTING.md](https://github.com/Pedro12909/RexCord/blob/master/CONTRIBUTING.md) are really good resources created by the community explaining the process of developing RexCord!
