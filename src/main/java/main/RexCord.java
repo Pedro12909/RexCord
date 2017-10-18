@@ -145,7 +145,8 @@ public final class RexCord {
             = "You do not have permission to do that";
 
     /**
-     * Prevents class from being instantiated
+     * Default constructor for RexCord
+     * No more than one instance of this should be created
      */
     public RexCord() {
         bannedCommands = new BannedCommands(this);
