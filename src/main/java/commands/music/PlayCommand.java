@@ -12,6 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
@@ -143,8 +144,9 @@ public class PlayCommand implements BotCommand {
         //might be rejected because of no user agent
         URLConnection conn = new URL(audioLink.trim()).openConnection();
         conn.setRequestProperty("User-Agent", rexCord.USER_AGENT);
+        InputStream input = conn.getInputStream();
         AudioInputStream audioInputStream
-                = AudioSystem.getAudioInputStream(conn.getInputStream());
+                = AudioSystem.getAudioInputStream(input);
 
         player.queue(audioInputStream);
         String message
