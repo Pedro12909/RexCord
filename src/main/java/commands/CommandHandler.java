@@ -5,6 +5,7 @@ import commands.music.LeaveCommand;
 import commands.music.PlayCommand;
 import commands.music.PauseCommand;
 import commands.music.SkipCommand;
+import commands.music.VolumeCommand;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message
         .MessageReceivedEvent;
@@ -59,7 +60,8 @@ public class CommandHandler {
                 new PlayCommand(rexCord),
                 new PauseCommand(rexCord),
                 new SkipCommand(rexCord),
-                new RemindCommand(rexCord)
+                new RemindCommand(rexCord),
+                new VolumeCommand(rexCord)
         ));
     }
 
