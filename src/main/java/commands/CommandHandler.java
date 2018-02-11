@@ -1,10 +1,5 @@
 package commands;
 
-import commands.music.HereCommand;
-import commands.music.LeaveCommand;
-import commands.music.PlayCommand;
-import commands.music.PauseCommand;
-import commands.music.SkipCommand;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message
         .MessageReceivedEvent;
@@ -54,11 +49,6 @@ public class CommandHandler {
                 new RequestCommand(rexCord),
                 new JokeCommand(rexCord),
                 new GifCommand(rexCord),
-                new HereCommand(rexCord),
-                new LeaveCommand(rexCord),
-                new PlayCommand(rexCord),
-                new PauseCommand(rexCord),
-                new SkipCommand(rexCord),
                 new RemindCommand(rexCord)
         ));
     }
@@ -99,8 +89,6 @@ public class CommandHandler {
         for (BotCommand cmd : availableCommands) {
             // If given command name is a valid command name, executes it
             if (commandString.equals(cmd.getCommandName())
-                    && !rexCord.getBannedCommands()
-                    .isCommandBanned(commandString)
                     && textChannelIsSetAsListen(event.getChannel())) {
                 try {
                     if (rexCord.getPermissions().

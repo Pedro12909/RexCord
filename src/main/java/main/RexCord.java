@@ -1,16 +1,12 @@
 package main;
 
-import commands.BannedCommands;
 import commands.CommandHandler;
 import model.Permissions.PermissionConfiguration;
 import commands.EmbeddedMessage;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
-import sx.blah.discord.handle.impl.events.guild.channel.message.
-        MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IUser;
-import sx.blah.discord.handle.obj.IVoiceChannel;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.EmbedBuilder;
 import sx.blah.discord.util.MessageBuilder;
@@ -30,11 +26,6 @@ public final class RexCord {
      * Bot Client
      */
     private IDiscordClient client;
-
-    /**
-     * RexCord's Banned Commands
-     */
-    private BannedCommands bannedCommands;
 
     /**
      * Instance of Command Handler
@@ -149,7 +140,6 @@ public final class RexCord {
      * No more than one instance of this should be created
      */
     public RexCord() {
-        bannedCommands = new BannedCommands(this);
         commandHandler = new CommandHandler(this);
         listenChannels = new ArrayList<>();
         remindHandler = new RemindHandler(this);
@@ -180,14 +170,6 @@ public final class RexCord {
     }
 
     /**
-     * Gets Banned Commands
-     * @return Banned Commands Class
-     */
-    public BannedCommands getBannedCommands() {
-        return bannedCommands;
-    }
-
-    /**
      * Sets a new Bot Token
      *
      * @param newToken new Bot Token to be set
@@ -203,15 +185,6 @@ public final class RexCord {
      */
     public void setBotBannedCommands(String bannedCommands) {
         this.botBannedCommands = bannedCommands;
-    }
-
-    /**
-     * Gets the bot banned commands
-     *
-     * @return String with bot banned commands
-     */
-    public String getBotBannedCommands() {
-        return botBannedCommands;
     }
 
     /**
@@ -325,42 +298,6 @@ public final class RexCord {
             System.out.println("RexCord: Error sending message. Got error:");
             de.printStackTrace();
         }
-    }
-
-    /**
-     * Sends a message inside a code block
-     * @param channel text channel
-     * @param message message
-     */
-    public void sendMessageWithBlock(IChannel channel, String message) {
-        message = "`" + message + "`";
-
-        sendMessage(channel, message);
-    }
-
-    /**
-     * Gets RexCord's Voice Channel
-     * @param event triggered event
-     * @return IVoiceChannel
-     */
-    public IVoiceChannel getBotVoiceChannel(MessageReceivedEvent event) {
-        return getClient()
-                .getOurUser()
-                .getVoiceStateForGuild(event.getGuild())
-                .getChannel();
-    }
-
-    /**
-     * Returns the IVoiceChannel in which the user that
-     * triggered the event is in
-     * @param event triggered event
-     * @return user's IVoiceChannel
-     */
-    public IVoiceChannel getUserVoiceChannelInEvent(MessageReceivedEvent
-                                                            event) {
-        return event.getAuthor().getVoiceStateForGuild(event.getGuild())
-                .getChannel();
-
     }
 
     /**
