@@ -16,6 +16,14 @@ import java.util.List;
 public class PermissionConfiguration {
 
     /**
+     * Config missing Error Message
+     */
+    private static final String PERMISSION_FILE_NOT_FOUND_ERROR
+            = "RexCord: Permissions file not found. "
+            + "Make sure config and permissions files are created "
+            + "and located in the correct directory.";
+
+    /**
      * List of roles on server
      */
     private List<Role> roles;
@@ -90,8 +98,15 @@ public class PermissionConfiguration {
      */
     public static PermissionConfiguration createInstance(RexCord rexCord)
             throws IOException {
+
         PermissionConfiguration result = null;
-        return XmlParser.parseXml(rexCord.DEFAULT_PERMISSIONS_PATH,
-                                        PermissionConfiguration.class);
+        try {
+            result = XmlParser.parseXml(rexCord.DEFAULT_PERMISSIONS_PATH,
+                    PermissionConfiguration.class);
+        } catch (IOException e) {
+            throw new IOException(PERMISSION_FILE_NOT_FOUND_ERROR);
+        }
+
+        return result;
     }
 }

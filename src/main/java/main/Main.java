@@ -13,14 +13,6 @@ import java.io.IOException;
 public class Main {
 
     /**
-     * Config missing Error Message
-     */
-    private static final String CONFIG_NOT_FOUND_ERROR
-            = "RexCord: Config file not found. "
-            + "Make sure config and permissions files are created "
-            + "and located in the correct directory.";
-
-    /**
      * Default Error Message
      */
     private static final String ERROR_MESSAGE
@@ -56,9 +48,9 @@ public class Main {
                                             createInstance(rexCord));
 
             startClient(rexCord);
-        } catch (IOException e) { // Config File doesnt exist
+        } catch (IOException e) { // Config/Permissions file could not be read
             System.out.println(RexCord.ERROR_MESSAGE);
-            System.out.println(RexCord.CONFIG_NOT_FOUND_ERROR);
+            System.out.println(e.getMessage());
             System.out.println(RexCord.TERMINATING_MESSAGE);
 
         } catch (ArrayIndexOutOfBoundsException e1) { // Bad config

@@ -16,10 +16,12 @@ public class ConfigReader {
     private RexCord rexCord;
 
     /**
-     * Print this message when a field definition is empty
+     * Config missing Error Message
      */
-    private static final String MISSING_DEFINITION =
-            "Error while loading config.cfg\n[Line %d] Missing %s definition";
+    private static final String CONFIG_NOT_FOUND_ERROR
+            = "RexCord: Config file not found. "
+            + "Make sure config and permissions files are created "
+            + "and located in the correct directory.";
 
     /**
      * Creates an instance of ConfigReader
@@ -28,7 +30,12 @@ public class ConfigReader {
      */
     public ConfigReader(RexCord rexCord) throws IOException {
         this.rexCord = rexCord;
-        readFile();
+
+        try {
+            readFile();
+        } catch (IOException e) {
+            throw new IOException(CONFIG_NOT_FOUND_ERROR);
+        }
     }
 
     /**
