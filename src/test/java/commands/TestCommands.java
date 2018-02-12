@@ -69,16 +69,6 @@ public class TestCommands {
     }
 
     @Test
-    public void testBannedCommands() {
-        when(rexCord.getBotBannedCommands()).thenReturn("banned1,banned2");
-        BannedCommands command = new BannedCommands(rexCord);
-        Assert.assertTrue(command.isCommandBanned("banned1"));
-        Assert.assertTrue(command.isCommandBanned("banned2"));
-        Assert.assertFalse(command.isCommandBanned("banned3"));
-    }
-
-
-    @Test
     public void testHelloCommand() {
         HelloCommand command = new HelloCommand(rexCord);
         IUser user = mock(IUser.class);
