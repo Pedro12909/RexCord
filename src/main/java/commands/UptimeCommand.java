@@ -1,8 +1,7 @@
 package commands;
 
-import sx.blah.discord.handle.impl.events.guild
-        .channel.message.MessageReceivedEvent;
 import main.RexCord;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 /**
  * Calculates how much time RexCord has been up
@@ -15,18 +14,16 @@ public class UptimeCommand implements BotCommand {
     private RexCord rexCord;
 
     /**
-     * Used to call the command via a message
-     */
-    private static final String COMMAND_NAME = "uptime";
-    /**
      * Represents the command description
      */
     private static final String COMMAND_DESCRIPTION =
             "Shows how much time the bot has been on";
+
     /**
      * Amount of hours per day
      */
     private static final int HOURS_PER_DAY = 24;
+
     /**
      * Amount of minutes per hour
      */
@@ -48,15 +45,6 @@ public class UptimeCommand implements BotCommand {
      */
     public UptimeCommand(RexCord rexCord) {
         this.rexCord = rexCord;
-    }
-
-    /**
-     * Gets command name
-     * @return command name
-     */
-    @Override
-    public final String getCommandName() {
-        return COMMAND_NAME;
     }
 
     /**

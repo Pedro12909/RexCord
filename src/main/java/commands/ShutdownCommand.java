@@ -1,8 +1,7 @@
 package commands;
 
-import sx.blah.discord.handle.impl.events.guild
-        .channel.message.MessageReceivedEvent;
 import main.RexCord;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 /**
  * Logs out and terminates application
@@ -15,11 +14,6 @@ public class ShutdownCommand implements BotCommand {
     private RexCord rexCord;
 
     /**
-     * Used to call this command via a message
-     */
-    private static final String COMMAND_NAME
-            = "shutdown";
-    /**
      * Command description
      */
     private static final String COMMAND_DESCRIPTION
@@ -31,15 +25,6 @@ public class ShutdownCommand implements BotCommand {
      */
     public ShutdownCommand(RexCord rexCord) {
         this.rexCord = rexCord;
-    }
-
-    /**
-     * Returns command name
-     * @return Command Name
-     */
-    @Override
-    public final String getCommandName() {
-        return COMMAND_NAME;
     }
 
     /**

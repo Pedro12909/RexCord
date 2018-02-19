@@ -1,22 +1,17 @@
 package commands;
 
 import main.RexCord;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.handle.obj.IUser;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -77,24 +72,6 @@ public class TestCommands {
         when(event.getAuthor().mention()).thenReturn(username);
         command.runCommand(event, "");
         verify(rexCord, times(1)).sendMessage(eq(channel), contains("test-user"));
-    }
-
-
-    @Test
-    public void testInfoCommand() {
-
-        List<BotCommand> commands = new ArrayList<>();
-        commands.add(new InfoCommand(rexCord));
-        CommandHandler commandHandler = PowerMockito.mock(CommandHandler.class);
-
-        when(commandHandler.getAvailableCommands()).thenReturn(commands);
-
-        when(rexCord.getCommandHandler()).thenReturn(commandHandler);
-
-        InfoCommand command = new InfoCommand(rexCord);
-        command.runCommand(event, "");
-        verify(rexCord, times(1)).sendEmbeddedMessage(eq(channel), anyObject());
-
     }
 
     @Test

@@ -57,13 +57,10 @@
             <artifactId>natty</artifactId>
             <version>0.13</version>
         </dependency>
-
-
         <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-mockito-release-full</artifactId>
-            <version>1.6.4</version>
-            <type>pom</type>
+            <groupId>net.dean.jraw</groupId>
+            <artifactId>JRAW</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
     <build>

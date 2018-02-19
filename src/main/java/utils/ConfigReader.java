@@ -1,5 +1,6 @@
 package utils;
 
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import main.RexCord;
 import model.Configuration;
 
@@ -18,10 +19,19 @@ public class ConfigReader {
     /**
      * Config missing Error Message
      */
-    private static final String CONFIG_NOT_FOUND_ERROR
-            = "RexCord: Config file not found. "
+    private static final String CONFIG_NOT_FOUND_ERROR =
+            "RexCord: Config file not found. "
             + "Make sure config and permissions files are created "
             + "and located in the correct directory.";
+
+    /**
+     * When Configuration file is not properly formatted, this message should be
+     * displayed
+     */
+    private static final String BAD_XML_CONFIG_ERROR =
+            "It seems that the configuration file is not properly formatted.\n"
+            + "Make sure it follows the example_config.xml formatting.";
+
 
     /**
      * Creates an instance of ConfigReader
@@ -33,6 +43,8 @@ public class ConfigReader {
 
         try {
             readFile();
+        } catch (UnrecognizedPropertyException e) {
+            throw new IOException(BAD_XML_CONFIG_ERROR);
         } catch (IOException e) {
             throw new IOException(CONFIG_NOT_FOUND_ERROR);
         }
@@ -48,9 +60,6 @@ public class ConfigReader {
                 .parseXml(RexCord.DEFAULT_CONFIG_PATH, Configuration.class);
         if (configuration.isTokenSet()) {
             rexCord.setBotToken(configuration.getToken());
-        }
-        if (configuration.isBannedCommandsSet()) {
-            rexCord.setBotBannedCommands(configuration.getBannedCommands());
         }
         if (configuration.isPrefixSet()) {
             rexCord.setBotPrefix(configuration.getPrefix());

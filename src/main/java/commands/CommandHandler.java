@@ -1,15 +1,14 @@
 package commands;
 
-import sx.blah.discord.api.events.EventSubscriber;
-import sx.blah.discord.handle.impl.events.guild.channel.message
-        .MessageReceivedEvent;
 import main.RexCord;
+import sx.blah.discord.api.events.EventSubscriber;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.util.MissingPermissionsException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Handles Commands Execution
@@ -22,9 +21,10 @@ public class CommandHandler {
     private RexCord rexCord;
 
     /**
-     * A list of all available commands
+     * HashMap containing all commands supported by RexCord
+     * Each key is what invokes it's corresponding command
      */
-    private final List<BotCommand> availableCommands;
+    private Map<String, BotCommand> commands = new HashMap();
 
     /**
      * When RexCord has no permission to post in a text channel
@@ -39,26 +39,30 @@ public class CommandHandler {
      */
     public CommandHandler(RexCord rexCord) {
         this.rexCord = rexCord;
-        availableCommands = new ArrayList<>(Arrays.asList(
-                new HelloCommand(rexCord),
-                new UptimeCommand(rexCord),
-                new AboutCommand(rexCord),
-                new ShutdownCommand(rexCord),
-                new MathCommand(rexCord),
-                new InfoCommand(rexCord),
-                new RequestCommand(rexCord),
-                new JokeCommand(rexCord),
-                new GifCommand(rexCord),
-                new RemindCommand(rexCord)
-        ));
+
+        populateCommands();
     }
 
     /**
-     * Returns all available commands
-     * @return A List with all the available commands
+     * All supported commands should be in the commands map
      */
-    public final List<BotCommand> getAvailableCommands() {
-        return availableCommands;
+    private void populateCommands() {
+        commands.put("greet", new HelloCommand(rexCord));
+        commands.put("uptime", new UptimeCommand(rexCord));
+        commands.put("about", new AboutCommand(rexCord));
+        commands.put("shutdown", new ShutdownCommand(rexCord));
+        commands.put("math", new MathCommand(rexCord));
+        commands.put("help", new HelpCommand(rexCord));
+        commands.put("gif", new GifCommand(rexCord));
+        commands.put("remindme", new RemindCommand(rexCord));
+    }
+
+    /**
+     * Getter method for available commands
+     * @return map of all available commands
+     */
+    public final Map<String, BotCommand> getCommands() {
+        return commands;
     }
 
     /**
@@ -85,24 +89,22 @@ public class CommandHandler {
 
         String[] args = Arrays.copyOfRange(received, 1, received.length);
 
-        // Iterates through all available commands
-        for (BotCommand cmd : availableCommands) {
-            // If given command name is a valid command name, executes it
-            if (commandString.equals(cmd.getCommandName())
-                    && textChannelIsSetAsListen(event.getChannel())) {
-                try {
-                    if (rexCord.getPermissions().
-                                isAllowed(event, commandString)) {
-                        cmd.runCommand(event, String.join(" ", args));
-                    } else {
-                        rexCord.sendMessage(event.getChannel(),
-                                                rexCord.PERMISSION_ERROR);
-                    }
-                } catch (MissingPermissionsException e) {
-                    event.getAuthor()
-                            .getOrCreatePMChannel()
-                            .sendMessage(NO_PERM_ERROR);
+        if (commands.containsKey(commandString)
+                && textChannelIsSetAsListen(event.getChannel())) {
+            BotCommand cmd = commands.get(commandString);
+
+            try {
+                if (rexCord.getPermissions().
+                        isAllowed(event, commandString)) {
+                    cmd.runCommand(event, String.join(" ", args));
+                } else {
+                    rexCord.sendMessage(event.getChannel(),
+                            rexCord.PERMISSION_ERROR);
                 }
+            } catch (MissingPermissionsException e) {
+                event.getAuthor()
+                        .getOrCreatePMChannel()
+                        .sendMessage(NO_PERM_ERROR);
             }
         }
     }

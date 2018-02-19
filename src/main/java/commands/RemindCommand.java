@@ -1,10 +1,9 @@
 package commands;
 
 import com.joestelmach.natty.DateGroup;
-import main.RexCord;
-import sx.blah.discord.handle.impl.events.guild.channel.message
-        .MessageReceivedEvent;
 import com.joestelmach.natty.Parser;
+import main.RexCord;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import utils.RemindHandler;
 import utils.Reminder;
 
@@ -15,15 +14,11 @@ import java.util.List;
  * Reminder Command
  */
 public class RemindCommand implements BotCommand {
+
     /**
      * Main instance of RexCord
      */
     private RexCord rexCord;
-
-    /**
-     * Represents the command name
-     */
-    private static final String COMMAND_NAME = "remindme";
 
     /**
      * Represents the command description
@@ -37,15 +32,6 @@ public class RemindCommand implements BotCommand {
      */
     public RemindCommand(RexCord rexCord) {
         this.rexCord = rexCord;
-    }
-
-    /**
-     * Gets Command Name
-     * @return command name
-     */
-    @Override
-    public final String getCommandName() {
-        return COMMAND_NAME;
     }
 
     /**
@@ -73,7 +59,8 @@ public class RemindCommand implements BotCommand {
         if (messageStart == messageEnd
                 || messageStart == -1
                 || messageEnd == -1) {
-            rexCord.sendMessage(event.getChannel(), "Message not detected");
+            rexCord.sendMessage(event.getChannel(),
+                    "Message not detected");
             return;
         }
 

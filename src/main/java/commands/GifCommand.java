@@ -4,8 +4,7 @@ import at.mukprojects.giphy4j.Giphy;
 import at.mukprojects.giphy4j.entity.search.SearchRandom;
 import at.mukprojects.giphy4j.exception.GiphyException;
 import main.RexCord;
-import sx.blah.discord.handle.impl.events
-        .guild.channel.message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 /**
  * Gif searcher
@@ -18,16 +17,18 @@ public class GifCommand implements BotCommand {
     private RexCord rexCord;
 
     /**
-     * What invokes the command
-     */
-    private static final String COMMAND_NAME =
-            "gif";
-
-    /**
      * A brief description of the command's functionality
      */
     private static final String COMMAND_DESCRIPTION =
             "A simple gif browser";
+
+    /**
+     * Displayed message when there's an error
+     * processing a gif query
+     */
+    private static final String ERROR_MSG =
+            "An error ocurred while processing that gif.\n"
+            + "Did you properly set your API Key in the configuration file?";
 
     /**
      * Creates an instance of Gif Command
@@ -35,15 +36,6 @@ public class GifCommand implements BotCommand {
      */
     public GifCommand(RexCord rexCord) {
         this.rexCord = rexCord;
-    }
-
-    /**
-     * Gets command description
-     * @return command description
-     */
-    @Override
-    public final String getCommandName() {
-        return COMMAND_NAME;
     }
 
     /**
@@ -74,10 +66,7 @@ public class GifCommand implements BotCommand {
                     embeddedMessage);
 
         } catch (GiphyException e) {
-            rexCord.sendMessage(event.getChannel(),
-                    "An error ocurred while processing that gif.\n"
-                            + "Did you properly set your API Key in the "
-                            + "configuration file?");
+            rexCord.sendMessage(event.getChannel(), ERROR_MSG);
         }
     }
 }

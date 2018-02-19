@@ -1,8 +1,8 @@
 package main;
 
 import commands.CommandHandler;
-import model.Permissions.PermissionConfiguration;
 import commands.EmbeddedMessage;
+import model.Permissions.PermissionConfiguration;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.handle.obj.IChannel;
@@ -10,9 +10,9 @@ import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.EmbedBuilder;
 import sx.blah.discord.util.MessageBuilder;
+import sx.blah.discord.util.RequestBuffer;
 import utils.RemindHandler;
 import utils.ReminderDispatcher;
-import sx.blah.discord.util.RequestBuffer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,11 +58,6 @@ public final class RexCord {
     private String botToken;
 
     /**
-     * Bot's banned commands
-     */
-    private String botBannedCommands;
-
-    /**
      * Public API Key from Giphy
      */
     private String giphyAPIKey;
@@ -71,11 +66,6 @@ public final class RexCord {
      * Only messages starting with this prefix will be handled
      */
     private static String botPrefix = "//";
-
-    /**
-     * Line comment in config file
-     */
-    public static final String CONFIG_COMMENT = "#";
 
     /**
      * Configuration's File Path
@@ -88,14 +78,6 @@ public final class RexCord {
      */
     public static final String DEFAULT_PERMISSIONS_PATH
             = System.getProperty("user.dir") + "/config/permissions.xml";
-
-    /**
-     * Config missing Error Message
-     */
-    public static final String CONFIG_NOT_FOUND_ERROR
-            = "RexCord: Config file not found. "
-            + "Make sure it is created and located in "
-            + "the correct directory.";
 
     /**
      * Unexpected error message
@@ -115,13 +97,6 @@ public final class RexCord {
      */
     public static final String TERMINATING_MESSAGE
             = "RexCord: Terminating RexCord...";
-
-    /**
-     * Error given when music command is invoked but
-     * RexCord is not in a voice channel
-     */
-    public static final String NOT_IN_VOICE_CHANNEL
-            = "Not in a voice channel. Use the here command";
 
     /**
      * RexCord's user agent when making connections to HTTP servers
@@ -176,15 +151,6 @@ public final class RexCord {
      */
     public void setBotToken(String newToken) {
         this.botToken = newToken;
-    }
-
-    /**
-     * Sets the bot banned commands
-     *
-     * @param bannedCommands String with the banned bot commands
-     */
-    public void setBotBannedCommands(String bannedCommands) {
-        this.botBannedCommands = bannedCommands;
     }
 
     /**

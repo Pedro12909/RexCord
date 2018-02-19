@@ -6,7 +6,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by thales on 01/10/17.
@@ -55,24 +56,6 @@ public class ConfigurationTest {
     public void isPrefixSet_ShouldReturn_False_IfPrefixIsNull() throws Exception {
         this.configuration.setPrefix(null);
         assertFalse(this.configuration.isPrefixSet());
-    }
-
-    @Test
-    public void isBannedCommandsSet_ShouldReturn_True() throws Exception {
-        this.configuration.setBannedCommands("123");
-        assertTrue(this.configuration.isBannedCommandsSet());
-    }
-
-    @Test
-    public void isBannedCommandsSet_ShouldReturn_False_IfBannedCommandsIsEmpty() throws Exception {
-        this.configuration.setBannedCommands("");
-        assertFalse(this.configuration.isBannedCommandsSet());
-    }
-
-    @Test
-    public void isBannedCommandsSet_ShouldReturn_False_IfBannedCommandsIsNull() throws Exception {
-        this.configuration.setBannedCommands(null);
-        assertFalse(this.configuration.isBannedCommandsSet());
     }
 
     @Test

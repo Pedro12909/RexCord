@@ -1,8 +1,7 @@
 package commands;
 
-import sx.blah.discord.handle.impl.events.guild.channel.message.
-        MessageReceivedEvent;
 import main.RexCord;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import utils.DiscordMarkdown;
 
 /**
@@ -16,24 +15,23 @@ public class AboutCommand implements BotCommand {
     private RexCord rexCord;
 
     /**
-     * Used to call this command via a message
-     */
-    private static final String COMMAND_NAME = "about";
-    /**
      * Represents the command description
      */
     private static final String COMMAND_DESCRIPTION =
             "Shows RexCord information";
+
     /**
      * String with Discord4J GitHub Repository link
      */
     private static final String DISCORD4J_GITHUB_REPOSITORY
             = "https://github.com/austinv11/Discord4J";
+
     /**
      * String with austinv11 GitHub Repository link
      */
     private static final String AUSTINV11_GITHUB_REPOSITORY
             = "https://github.com/austinv11";
+
     /**
      * String with Just Some Music Bot GitHub Repository
      */
@@ -46,16 +44,6 @@ public class AboutCommand implements BotCommand {
      */
     public AboutCommand(RexCord rexCord) {
         this.rexCord = rexCord;
-    }
-
-    /**
-     * Gets command name
-     *
-     * @return command name
-     */
-    @Override
-    public final String getCommandName() {
-        return COMMAND_NAME;
     }
 
     /**

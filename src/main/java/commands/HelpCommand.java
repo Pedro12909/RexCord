@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package commands;
 
-import java.util.List;
-
 import main.RexCord;
-import sx.blah.discord.handle.impl.events.guild.channel.message.
-        MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import utils.DiscordMarkdown;
+
+import java.util.Map;
 
 /**
  * Informs user about commands description
  */
-public class InfoCommand implements BotCommand {
+public class HelpCommand implements BotCommand {
 
     /**
      * Instance of RexCord
@@ -37,18 +31,8 @@ public class InfoCommand implements BotCommand {
      * Creates an instance of the Info Command Class
      * @param rexCord main instance of RexCord
      */
-    public InfoCommand(RexCord rexCord) {
+    public HelpCommand(RexCord rexCord) {
         this.rexCord = rexCord;
-    }
-
-    /**
-     * Gets command name
-     *
-     * @return A String with the Command name
-     */
-    @Override
-    public final String getCommandName() {
-        return COMMAND_NAME;
     }
 
     /**
@@ -66,21 +50,24 @@ public class InfoCommand implements BotCommand {
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        String commandInformation = "All commands information\nPrefix being "
-                + "used:" + DiscordMarkdown.bold(rexCord.getBotPrefix());
-        List<BotCommand> commands =
-                rexCord.getCommandHandler()
-                .getAvailableCommands();
-        for (BotCommand command : commands) {
+        String commandInformation = "All commands information\n"
+                + "Prefix being " + "used:"
+                + DiscordMarkdown.bold(rexCord.getBotPrefix());
+
+        for (Map.Entry<String, BotCommand> entry
+                : rexCord.getCommandHandler().getCommands().entrySet()) {
+            String commandName = entry.getKey();
+            BotCommand command = entry.getValue();
             commandInformation += "\n"
-                    + DiscordMarkdown.bold(command.getCommandName())
+                    + DiscordMarkdown.bold(commandName)
                     + " == "
                     + DiscordMarkdown.bold(command
                     .getCommandDescription());
         }
 
         EmbeddedMessage embeddedMessage =
-                new EmbeddedMessage("Commands", commandInformation, "");
+                new EmbeddedMessage("Commands",
+                        commandInformation, "");
 
         rexCord.sendEmbeddedMessage(event.getChannel(), embeddedMessage);
     }

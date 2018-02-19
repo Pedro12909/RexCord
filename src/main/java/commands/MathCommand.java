@@ -1,9 +1,7 @@
 package commands;
 
 import main.RexCord;
-
-import sx.blah.discord.handle.impl.events.guild.channel.message
-        .MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import utils.MathHandler;
 
 /**
@@ -17,11 +15,6 @@ public class MathCommand implements BotCommand {
     private RexCord rexCord;
 
     /**
-     * Represents the command name
-     */
-    private static final String COMMAND_NAME = "math";
-
-    /**
      * Represents the command description
      */
     private static final String COMMAND_DESCRIPTION
@@ -33,16 +26,6 @@ public class MathCommand implements BotCommand {
      */
     public MathCommand(RexCord rexCord) {
         this.rexCord = rexCord;
-    }
-
-    /**
-     * Gets command name
-     *
-     * @return A String with the Command name
-     */
-    @Override
-    public final String getCommandName() {
-        return COMMAND_NAME;
     }
 
     /**

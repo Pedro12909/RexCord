@@ -20,11 +20,6 @@ public final class Configuration {
     private String prefix;
 
     /**
-     * banned commands
-     */
-    private String bannedCommands;
-
-    /**
      * listen channels
      */
     private List<Long> listenChannels;
@@ -62,21 +57,6 @@ public final class Configuration {
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
-    }
-
-    /**
-     * @return bannedCommands
-     */
-    public String getBannedCommands() {
-        return bannedCommands;
-    }
-
-    /**
-     * sets banned comments
-     * @param bannedCommands the banned commands
-     */
-    public void setBannedCommands(String bannedCommands) {
-        this.bannedCommands = bannedCommands;
     }
 
     /**
@@ -123,14 +103,6 @@ public final class Configuration {
      */
     public boolean isPrefixSet() {
         return this.prefix != null && !this.prefix.isEmpty();
-    }
-
-    /**
-     * verifies if bannedCommands has already been set
-     * @return true if bannedCommands has been set, false otherwise
-     */
-    public boolean isBannedCommandsSet() {
-        return this.bannedCommands != null && !this.bannedCommands.isEmpty();
     }
 
     /**
