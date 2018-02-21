@@ -1,6 +1,7 @@
 package commands;
 
-import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild
+        .channel.message.MessageReceivedEvent;
 
 /**
  * All Bot Commands should implement this

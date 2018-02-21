@@ -25,11 +25,6 @@ public final class Configuration {
     private List<Long> listenChannels;
 
     /**
-     * giphy api key
-     */
-    private String apiGiphyKey;
-
-    /**
      * @return token
      */
     public String getToken() {
@@ -75,21 +70,6 @@ public final class Configuration {
     }
 
     /**
-     * @return apiGiphyKey
-     */
-    public String getApiGiphyKey() {
-        return apiGiphyKey;
-    }
-
-    /**
-     * @param apiGiphyKey
-     * sets giphyApiKey
-     */
-    public void setApiGiphyKey(String apiGiphyKey) {
-        this.apiGiphyKey = apiGiphyKey;
-    }
-
-    /**
      * verifies if the token has already been set
      * @return true if the token has been set, false otherwise
      */
@@ -103,14 +83,6 @@ public final class Configuration {
      */
     public boolean isPrefixSet() {
         return this.prefix != null && !this.prefix.isEmpty();
-    }
-
-    /**
-     * verifies if giphyApiKey has already been set
-     * @return true if giphyApiKey has been set, false otherwise
-     */
-    public boolean isApiGiphyKeySet() {
-        return this.apiGiphyKey != null && !this.apiGiphyKey.isEmpty();
     }
 
     /**

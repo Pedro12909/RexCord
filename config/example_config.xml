@@ -1,7 +1,6 @@
 <config>
     <token>NaTzNTAwSTY40TAwPFC5MzM4.DbcLvA.eU8UmqGM2NBKIGYti3ZpxCQLvDc</token>
     <prefix>//</prefix>
-    <bannedCommands>DEFAULT</bannedCommands>
     <listenChannels>
         <listenChannel>284687912687132846</listenChannel>
         <listenChannel>549871324898716543</listenChannel>

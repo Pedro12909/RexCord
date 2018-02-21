@@ -3,7 +3,8 @@ package commands;
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 import main.RexCord;
-import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel
+        .message.MessageReceivedEvent;
 import utils.RemindHandler;
 import utils.Reminder;
 

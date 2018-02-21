@@ -22,7 +22,6 @@ public class XmlParserTest {
         assertTrue(configuration.getListenChannels().contains(284687912687132846L));
         assertTrue(configuration.getListenChannels().contains(549871324898716543L));
         assertTrue(configuration.getListenChannels().contains(135798126574567981L));
-        assertEquals("33a79488-c78c-448b-9c67-5723879e055e", configuration.getApiGiphyKey());
     }
 
 }

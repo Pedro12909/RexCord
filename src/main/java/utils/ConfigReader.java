@@ -33,7 +33,9 @@ public class ConfigReader {
             + "Make sure it follows the example_config.xml formatting.";
 
 
-    /**
+    /**  if (configuration.isApiGiphyKeySet()) {
+            rexCord.setGiphyAPIKey(configuration.getApiGiphyKey());
+        }
      * Creates an instance of ConfigReader
      * @param rexCord main instance of RexCord
      * @throws IOException in case doesnt find config file
@@ -66,9 +68,6 @@ public class ConfigReader {
         }
         if (configuration.isListenChannelsSet()) {
             rexCord.setListenChannels(configuration.getListenChannels());
-        }
-        if (configuration.isApiGiphyKeySet()) {
-            rexCord.setGiphyAPIKey(configuration.getApiGiphyKey());
         }
     }
 

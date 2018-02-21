@@ -59,24 +59,6 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void isApiGiphyKeySet_ShouldReturn_True() throws Exception {
-        this.configuration.setApiGiphyKey("123");
-        assertTrue(this.configuration.isApiGiphyKeySet());
-    }
-
-    @Test
-    public void isApiGiphyKeySet_ShouldReturn_False_IfApiGiphyKeyIsEmpty() throws Exception {
-        this.configuration.setApiGiphyKey("");
-        assertFalse(this.configuration.isApiGiphyKeySet());
-    }
-
-    @Test
-    public void isApiGiphyKeySet_ShouldReturn_False_IfApiGiphyKeyIsNull() throws Exception {
-        this.configuration.setApiGiphyKey(null);
-        assertFalse(this.configuration.isApiGiphyKeySet());
-    }
-
-    @Test
     public void isListenChannelsSet_ShouldReturn_True() throws Exception {
         this.configuration.setListenChannels(Arrays.asList(123L));
         assertTrue(this.configuration.isListenChannelsSet());

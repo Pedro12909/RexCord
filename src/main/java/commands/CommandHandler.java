@@ -2,7 +2,8 @@ package commands;
 
 import main.RexCord;
 import sx.blah.discord.api.events.EventSubscriber;
-import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel
+        .message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.util.MissingPermissionsException;
 
@@ -53,7 +54,6 @@ public class CommandHandler {
         commands.put("shutdown", new ShutdownCommand(rexCord));
         commands.put("math", new MathCommand(rexCord));
         commands.put("help", new HelpCommand(rexCord));
-        commands.put("gif", new GifCommand(rexCord));
         commands.put("remindme", new RemindCommand(rexCord));
     }
 

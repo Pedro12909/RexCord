@@ -6,7 +6,11 @@
 
     <groupId>rexcord</groupId>
     <artifactId>rexcord</artifactId>
-    <version>1.0.0</version>
+    <version>0.9</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <repositories>
         <repository> <!-- This repo fixes issues with transitive dependencies -->
@@ -46,11 +50,6 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>at.mukprojects</groupId>
-            <artifactId>giphy4j</artifactId>
-            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.joestelmach</groupId>
@@ -147,4 +146,5 @@
             </plugin>
         </plugins>
     </reporting>
+
 </project>

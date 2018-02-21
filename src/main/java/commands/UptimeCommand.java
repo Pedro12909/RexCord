@@ -1,7 +1,8 @@
 package commands;
 
 import main.RexCord;
-import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
+import sx.blah.discord.handle.impl.events.guild.channel
+        .message.MessageReceivedEvent;
 
 /**
  * Calculates how much time RexCord has been up
