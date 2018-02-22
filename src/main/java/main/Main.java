@@ -13,18 +13,6 @@ import java.io.IOException;
 public class Main {
 
     /**
-     * Default Error Message
-     */
-    private static final String ERROR_MESSAGE
-            = "RexCord: Unable to start RexCord!";
-
-    /**
-     * RexCord terminating message
-     */
-    private static final String TERMINATING_MESSAGE
-            = "RexCord: Terminating RexCord...";
-
-    /**
      * Indicates that this class should not be instantiated
      */
     private Main() {

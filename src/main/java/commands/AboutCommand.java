@@ -80,6 +80,8 @@ public class AboutCommand implements BotCommand {
         EmbeddedMessage embeddedMessage =
                 new EmbeddedMessage("About", message, "");
 
-        rexCord.sendEmbeddedMessage(event.getChannel(), embeddedMessage);
+
+
+        rexCord.sendMessage(event.getChannel(), rexCord.getVersion());
     }
 }

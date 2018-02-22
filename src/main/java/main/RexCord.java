@@ -14,8 +14,10 @@ import sx.blah.discord.util.RequestBuffer;
 import utils.RemindHandler;
 import utils.ReminderDispatcher;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Contains important methods and variables for the Bot
@@ -58,9 +60,9 @@ public final class RexCord {
     private String botToken;
 
     /**
-     * Public API Key from Giphy
+     * Current version
      */
-    private String giphyAPIKey;
+    private String version;
 
     /**
      * Only messages starting with this prefix will be handled
@@ -99,16 +101,16 @@ public final class RexCord {
             = "RexCord: Terminating RexCord...";
 
     /**
-     * RexCord's user agent when making connections to HTTP servers
-     */
-    public static final String USER_AGENT
-            = "java:rexcord:v1.0";
-
-    /**
      * RexCord permissions error message
      */
     public static final String PERMISSION_ERROR
             = "You do not have permission to do that";
+
+    /**
+     * Error loading RexCord's project properties file
+     */
+    private static final String PROPERTIES_LOAD_ERROR =
+            "RexCord: Error loading project properties file.";
 
     /**
      * Default constructor for RexCord
@@ -119,8 +121,26 @@ public final class RexCord {
         listenChannels = new ArrayList<>();
         remindHandler = new RemindHandler(this);
 
+        loadProjectVersion();
+
         Thread dispatcher = new Thread(new ReminderDispatcher(remindHandler));
         dispatcher.start();
+    }
+
+    /**
+     * Loads project version from project.properties file
+     */
+    private void loadProjectVersion() {
+        final Properties properties = new Properties();
+        try {
+            properties.load(this.getClass()
+                    .getResourceAsStream("/project.properties"));
+        } catch (IOException e) {
+            //TODO LOG error
+            System.out.println(PROPERTIES_LOAD_ERROR);
+        }
+
+        version = properties.getProperty("version");
     }
 
     /**
@@ -154,19 +174,11 @@ public final class RexCord {
     }
 
     /**
-     * Gets current Giphy API Key
-     * @return giphy api key
+     * Getter method for project version
+     * @return project version
      */
-    public String getGiphyAPIKey() {
-        return giphyAPIKey;
-    }
-
-    /**
-     * Sets giphy API key
-     * @param giphyAPIKey giphy API key
-     */
-    public void setGiphyAPIKey(String giphyAPIKey) {
-        this.giphyAPIKey = giphyAPIKey;
+    public String getVersion() {
+        return version;
     }
 
     /**

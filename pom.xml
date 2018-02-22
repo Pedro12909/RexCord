@@ -6,7 +6,7 @@
 
     <groupId>rexcord</groupId>
     <artifactId>rexcord</artifactId>
-    <version>0.9</version>
+    <version>0.8</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -57,9 +57,9 @@
             <version>0.13</version>
         </dependency>
         <dependency>
-            <groupId>net.dean.jraw</groupId>
-            <artifactId>JRAW</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.8.0-beta1</version>
         </dependency>
     </dependencies>
     <build>
@@ -128,6 +128,14 @@
                 </executions>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
     </build>
 
     <reporting>
