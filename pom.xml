@@ -58,8 +58,8 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.8.0-beta1</version>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
         </dependency>
     </dependencies>
     <build>
@@ -79,6 +79,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
                 <configuration>
+                    <finalName>${project.artifactId}_${project.version}</finalName>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
