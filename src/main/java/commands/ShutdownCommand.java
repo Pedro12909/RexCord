@@ -44,7 +44,7 @@ public class ShutdownCommand implements BotCommand {
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
         rexCord.sendMessage(event.getChannel(),
-                "Disconnecting! :wave:");
+                ":wave: Disconnecting!");
         rexCord.getClient().logout();
         System.exit(0);
     }

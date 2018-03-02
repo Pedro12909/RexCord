@@ -4,6 +4,7 @@ echo RexCord: Getting Project version from pom.xml...
 
 VERSION=$(mvn help:evaluate -Dexpression=project.version | grep -v '^\[')
 
+
 if [ -z ${VERSION} ]; then
     echo Could not get version number from pom.xml. Exiting...
     sleep 3

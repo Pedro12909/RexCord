@@ -45,8 +45,6 @@ public class MathCommand implements BotCommand {
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        // FIXME due to args being a vector,
-        // it is only selecting the first argument
         rexCord.sendMessage(event.getChannel(),
                 MathHandler.handleOperation(args));
     }

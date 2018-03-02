@@ -55,6 +55,7 @@ public class CommandHandler {
         commands.put("math", new MathCommand(rexCord));
         commands.put("help", new HelpCommand(rexCord));
         commands.put("remindme", new RemindCommand(rexCord));
+        commands.put("me", new MeCommand(rexCord));
     }
 
     /**

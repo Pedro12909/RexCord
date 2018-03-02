@@ -61,7 +61,7 @@ public class RemindCommand implements BotCommand {
                 || messageStart == -1
                 || messageEnd == -1) {
             rexCord.sendMessage(event.getChannel(),
-                    "Message not detected");
+                    ":unamused: Please give me a message to remind you.");
             return;
         }
 
@@ -86,7 +86,7 @@ public class RemindCommand implements BotCommand {
                                                     event.getAuthor()));
         } catch (Exception e) {
             rexCord.sendMessage(event.getChannel(),
-                                "Could not interpret query :(");
+                    ":thinking: That seems like an invalid time format.");
         }
     }
 }

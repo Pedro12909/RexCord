@@ -41,7 +41,7 @@ public class HelloCommand implements BotCommand {
      */
     @Override
     public final void runCommand(MessageReceivedEvent event, String args) {
-        String messageToSend = "Hello, " + event.getAuthor().mention();
+        String messageToSend = ":wave: Hello, " + event.getAuthor().mention();
 
         rexCord.sendMessage(event.getChannel(), messageToSend);
     }
