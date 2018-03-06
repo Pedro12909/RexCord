@@ -6,6 +6,7 @@ import model.Permissions.PermissionConfiguration;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.handle.obj.IChannel;
+import sx.blah.discord.handle.obj.IRole;
 import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.EmbedBuilder;
@@ -313,5 +314,30 @@ public final class RexCord {
         builder.withImage(embeddedMessage.getImage());
 
         RequestBuffer.request(() -> channel.sendMessage(builder.build()));
+    }
+
+    /**
+     * Given a list of IRole, adds each IRole's name to a list
+     * of Strings and then returns it
+     * @param roles list of IRoles
+     * @return List of strings</String>
+     */
+    public static String rolesListToString(List<IRole> roles) {
+        if (roles.isEmpty()) {
+            return "No Roles";
+        }
+
+        StringBuilder builder = new StringBuilder();
+
+        for (IRole role : roles) {
+            String roleName = role.getName();
+            // @everyone should not be added, to prevent pinging everyone
+            if (!roleName.equals("@everyone")) {
+                builder.append(roleName);
+                builder.append(" ");
+            }
+        }
+
+        return builder.toString();
     }
 }

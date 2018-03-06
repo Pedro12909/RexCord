@@ -64,7 +64,7 @@ public class MeCommand implements BotCommand {
         final String discriminator = user.getDiscriminator();
         final String userID = String.valueOf(user.getLongID());
         final String joinDate = user.getCreationDate()
-                .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                .format(DateTimeFormatter.ISO_LOCAL_DATE);
         final String avatarURL = user.getAvatarURL();
         final String isBot = String.valueOf(user.isBot());
         final List<IRole> userRoles = user.getRolesForGuild(event.getGuild());
@@ -88,37 +88,12 @@ public class MeCommand implements BotCommand {
 
         builder.appendField("\n:robot: Is a Bot? :robot:", isBot, true);
         builder.appendField(":performing_arts: User Roles :performing_arts:",
-                rolesListToString(userRoles), true);
+                RexCord.rolesListToString(userRoles), true);
 
         builder.withFooterIcon(rexCord.getClient().getOurUser().getAvatarURL());
         builder.withFooterText("RexCord's Me Command");
 
         RequestBuffer.request(() ->
                 event.getChannel().sendMessage(builder.build()));
-    }
-
-    /**
-     * Given a list of IRole, adds each IRole's name to a list
-     * of Strings and then returns it
-     * @param roles list of IRoles
-     * @return List of strings</String>
-     */
-    private String rolesListToString(List<IRole> roles) {
-        if (roles.isEmpty()) {
-            return "No Roles";
-        }
-
-        StringBuilder builder = new StringBuilder();
-
-        for (IRole role : roles) {
-            String roleName = role.getName();
-            // @everyone should not be added, to prevent pinging everyone
-            if (!roleName.equals("@everyone")) {
-                builder.append(roleName);
-                builder.append(" ");
-            }
-        }
-
-        return builder.toString();
     }
 }
